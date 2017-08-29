@@ -10,11 +10,11 @@ namespace TravelForum.Models
     private string _name;
     private int _regionId;
 
-    public Country(string name, int id=0)
+    public Country(string name, int regionId, int id = 0)
     {
-      _id= id;
+      _id  = id;
       _name = name;
-      _regionId;
+      _regionId = regionId;
     }
   }
 }
