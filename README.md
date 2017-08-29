@@ -23,7 +23,7 @@ _This web app enables a user to create a post about the places they visited an b
 |11. |From the `Update comment` view, the user can `edit` their previous comment and save to the database.| >Click `Save` <br> >`Cancel`| >Save the changes and redirected to `post details` page <br> > Redirected to the `post details` page
 |12. |From the `post details` view use can delete their comment.| Click `Delete`infront of the comment.| Redirected to `Delete view`
 
-![](schema.png)
+![](travel-schema.png)
 
 
 
