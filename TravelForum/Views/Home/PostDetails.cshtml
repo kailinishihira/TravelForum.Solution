@@ -5,10 +5,10 @@
 
 <h3>@Model["post"].GetTitle()</h3>
 <h4>By: @Model["post"].GetName()</h4>
-<h4>Trip Duration:@Model["post"].GetStartDate() - @Model["post"].GetEndDate()</h4>
+<h4>Trip Duration: @Model["post"].GetStartDate().ToString("MM/dd/yyyy") - @Model["post"].GetEndDate().ToString("MM/dd/yyyy")</h4>
 <h4>Region: @Model["region"].GetName()</h4>
-<h4>Country:@Model["country"].GetName()</h4>
-<h4>City:@Model["city"].GetName()</h4>
+<h4>Country: @Model["country"].GetName()</h4>
+<h4>City: @Model["city"].GetName()</h4>
 ----
 <p>@Model["post"].GetText()</p>
 
@@ -24,7 +24,7 @@
 <div class="form-group">
   <form action="/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["region"].GetId()/city/["city"].GetId" method="post">
   <label for="reply">Add a reply:</label>
-  <input type="text" placeholder="Title" name="reply-name">
+  <input type="text" placeholder="Your Name" name="reply-name">
   <textarea class="form-control" rows="5" name="reply-text"></textarea>
   <button type="submit" class= "btn btn-info">Add reply</button>
 </form>

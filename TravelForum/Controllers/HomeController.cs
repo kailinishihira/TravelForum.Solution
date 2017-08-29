@@ -11,6 +11,7 @@ namespace TravelForum.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
+      Region thisRegion = new Region("All");
       List<Post> allPosts = Post.GetAll();
       List<Region> allRegions = Region.GetAll();
       List<Country> allCountries = Country.GetAll();
@@ -18,6 +19,7 @@ namespace TravelForum.Controllers
       List<Tag> allTags = Tag.GetAll();
 
       Dictionary<string, object> model = new Dictionary<string, object> {};
+      model.Add("searchby", thisRegion);
       model.Add("posts", allPosts);
       model.Add("regions", allRegions);
       model.Add("countries", allCountries);
@@ -38,6 +40,7 @@ namespace TravelForum.Controllers
       List<Tag> allTags = Tag.GetAll();
 
       Dictionary<string, object> model = new Dictionary<string, object> {};
+      model.Add("searchby", thisRegion);
       model.Add("posts", regionPosts);
       model.Add("regions", allRegions);
       model.Add("countries", allCountries);
@@ -58,6 +61,7 @@ namespace TravelForum.Controllers
       List<Tag> allTags = Tag.GetAll();
 
       Dictionary<string, object> model = new Dictionary<string, object> {};
+      model.Add("searchby", thisCountry);
       model.Add("posts", countryPosts);
       model.Add("regions", allRegions);
       model.Add("countries", allCountries);
@@ -78,6 +82,7 @@ namespace TravelForum.Controllers
       List<Tag> allTags = Tag.GetAll();
 
       Dictionary<string, object> model = new Dictionary<string, object> {};
+      model.Add("searchby", thisCity);
       model.Add("posts", cityPosts);
       model.Add("regions", allRegions);
       model.Add("countries", allCountries);
@@ -98,6 +103,7 @@ namespace TravelForum.Controllers
       List<Tag> allTags = Tag.GetAll();
 
       Dictionary<string, object> model = new Dictionary<string, object> {};
+      model.Add("searchby", thisTag);
       model.Add("posts", tagPosts);
       model.Add("regions", allRegions);
       model.Add("countries", allCountries);
