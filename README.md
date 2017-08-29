@@ -40,11 +40,11 @@ _This web app enables a user to create a post about the places they visited an b
 `> CREATE DATABASE travel_forum;`<br>
 `> USE travel_forum;`<br>
 `> CREATE TABLE regions (id serial PRIMARY KEY, name VARCHAR(255));`<br>
-`> CREATE TABLE countries (id serial PRIMARY KEY, name VARCHAR(255), city(255));`<br>
-`> CREATE TABLE cities (id serial PRIMARY KEY, name VARCHAR(255), city(255));`<br>
-`> CREATE TABLE tags (id serial PRIMARY KEY, name VARCHAR(255), city(255));`<br>
-`> CREATE TABLE comments (id serial PRIMARY KEY, name VARCHAR(255), text VARCHAR(255), post_id INT);`<br>
-`> CREATE TABLE posts (id serial PRIMARY KEY, title VARCHAR (255), name VARCHAR(255), start_date TINYINT(255), end_date TINYINT(255), city_id INT, text VARCHAR (255));`<br>
+`> CREATE TABLE countries (id serial PRIMARY KEY, name VARCHAR(255));`<br>
+`> CREATE TABLE cities (id serial PRIMARY KEY, name VARCHAR(255), country_id INT;`<br>
+`> CREATE TABLE tags (id serial PRIMARY KEY, name VARCHAR(255));`<br>
+`> CREATE TABLE replies (id serial PRIMARY KEY, name VARCHAR(255), text VARCHAR(255), post_id INT);`<br>
+`> CREATE TABLE posts (id serial PRIMARY KEY, title VARCHAR (255), name VARCHAR(255), start_date DATETIME, end_date DATETIME, region_id INT, country_id INT, city_id INT, text VARCHAR (255));`<br>
 `> CREATE TABLE posts_tags (id serial PRIMARY KEY, post_id INT, tag_id INT);`<br>
 
 ##### 2. Import from the Cloned Repository
