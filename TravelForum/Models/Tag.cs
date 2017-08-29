@@ -247,7 +247,5 @@ namespace TravelForum.Models
         conn.Dispose();
       }
     }
-
-
   }
 }
