@@ -1,7 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
 using TravelForum.Models;
 
 
