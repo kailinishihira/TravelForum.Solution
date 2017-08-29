@@ -45,7 +45,7 @@ _This web app enables a user to create a post about the places they visited an b
 `> CREATE TABLE tags (id serial PRIMARY KEY, name VARCHAR(255), city(255));`<br>
 `> CREATE TABLE comments (id serial PRIMARY KEY, name VARCHAR(255), text VARCHAR(255), post_id INT);`<br>
 `> CREATE TABLE posts (id serial PRIMARY KEY, title VARCHAR (255), name VARCHAR(255), start_date TINYINT(255), end_date TINYINT(255), city_id INT, text VARCHAR (255));`<br>
-`> CREATE TABLE posts_tags (post_id INT, tag_id INT);`<br>
+`> CREATE TABLE posts_tags (id serial PRIMARY KEY, post_id INT, tag_id INT);`<br>
 
 ##### 2. Import from the Cloned Repository
 * _Click 'Open start page' in MAMP_
