@@ -84,13 +84,12 @@ namespace TravelForum.Tests
       Post newPost = new Post("Title", "name", default(DateTime), default(DateTime), "It was fun");
       newPost.Save();
       int id = newPost.GetId();
-      Console.WriteLine("Expected id =============" + id.ToString());
+
 
       newPost.Update("Title2", "name2", default(DateTime), default(DateTime), "It was not fun", 2, 2, 2);
 
       var expected = new Post("Title2", "name2", default(DateTime), default(DateTime), "It was not fun", 2, 2, 2, id);
 
-      Console.WriteLine("Actual id =============" + Post.GetAll()[0].GetId().ToString());
       var actual = Post.GetAll()[0];
 
       Assert.AreEqual(expected, actual);
