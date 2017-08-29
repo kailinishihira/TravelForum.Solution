@@ -299,6 +299,67 @@ namespace TravelForum.Models
 
 
     }
+
+    public void AddTag(int tagId)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO posts_tags (post_id, tag_id) VALUES (@postId, @tagId);";
+
+      MySqlParameter postIdParam = new MySqlParameter();
+      postIdParam.ParameterName = "@postId";
+      postIdParam.Value = _id;
+      cmd.Parameters.Add(postIdParam);
+
+      MySqlParameter tagIdParam = new MySqlParameter();
+      tagIdParam.ParameterName = "@tagId";
+      tagIdParam.Value = tagId;
+      cmd.Parameters.Add(tagIdParam);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public List<Tag> GetTags()
+    {
+      List<Tag> allTags = new List<Tag>{};
+
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT tags.*
+      FROM posts
+      JOIN posts_tags ON (posts.id = posts_tags.post_id)
+      JOIN tags ON (tags.id = posts_tags.tag_id)
+      WHERE posts.id = @postId;";
+
+      MySqlParameter postIdParam = new MySqlParameter();
+      postIdParam.ParameterName = "@postId";
+      postIdParam.Value = _id;
+      cmd.Parameters.Add(postIdParam);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Tag newTag = new Tag(name, id);
+        allTags.Add(newTag);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allTags;
+    }
+
     public void Delete()
     {
       MySqlConnection conn = DB.Connection();

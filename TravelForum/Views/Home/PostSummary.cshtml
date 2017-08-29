@@ -1,0 +1,45 @@
+<body id="post-form">
+  <h1>Here is your post summary:</h1>
+
+  <form action="/form/summary/create" method="post" class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" class="form-control" name="title" value='@model["post"].GetTitle()'required>
+    <label for="name">Your name:</label>
+    <input type="text" class="form-control" name="name" value='@model["post"].GetName()'required>
+    <label for="start-date">Travel start date:</label>
+    <input type="date" class="form-control" name="start-date" value='@model["post"].GetStartDate()'required>
+    <label for="end-date">Travel end date:</label>
+    <input type="date" class="form-control" name="end-date" value='@model["post"].GetEndDate()'required>
+    <label for="text">Text:</label>
+    <input type="text" class="form-control" name="text" value='@model["post"].GetText()'required>
+
+    <label for="region">Region:</label>
+    <select class="selectpicker" name="region">
+      @foreach(var region in model["regions"])
+      {
+          <option value="@region.GetId()">@region.GetName()</option>
+      }
+    </select>
+
+    <label for="country">Country:</label>
+    <select class="selectpicker" name="country">
+      @foreach(var country in model["countries"])
+      {
+          <option value="@country.GetId()">@country.GetName()</option>
+      }
+    </select>
+
+    <label for="city">City:</label>
+    <select class="selectpicker" name="city">
+      @foreach(var city in model["cities"])
+      {
+          <option value="@city.GetId()">@city.GetName()</option>
+      }
+    </select>
+    <button type="submit" class="btn btn-success">Proceed</button>
+    <div>
+      <a href='/update/@model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
+      <a href='/'><button class="btn btn-info"> Cancel</button></a>
+    </div>
+  </form>
+</body>

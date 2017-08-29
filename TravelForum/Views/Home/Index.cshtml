@@ -1,0 +1,74 @@
+<h1>Travel Forum</h1>
+
+<div class="row">
+  <div class="col-md-3">
+    <h3>Start exploring:</h3>
+
+    <form action='/posts/by-region' method='post'>
+      <label for='region-id'>Select a Region:</label>
+      <select id='region-id' name='region-id' type='text'>
+        @foreach (var region in @Model["regions"])
+        {
+          <option value='@region.GetId()'>@region.GetName()</option>
+        }
+      </select>
+      <button type='submit' class='btn btn-default'>Read</button>
+    </form>
+
+    <form action='/posts/by-country' method='post'>
+      <label for='country-id'>Select a Country:</label>
+      <select id='country-id' name='country-id' type='text'>
+        @foreach (var country in @Model["countries"])
+        {
+          <option value='@country.GetId()'>@country.GetName()</option>
+        }
+      </select>
+      <button type='submit' class='btn btn-default'>Read</button>
+    </form>
+
+    <form action='/posts/by-city' method='post'>
+      <label for='city-id'>Select a City:</label>
+      <select id='city-id' name='city-id' type='text'>
+        @foreach (var city in @Model["cities"])
+        {
+          <option value='@city.GetId()'>@city.GetName()</option>
+        }
+      </select>
+      <button type='submit' class='btn btn-default'>Read</button>
+    </form>
+
+    <form action='/posts/by-tag' method='post'>
+      <label for='tag-id'>Select a Tag:</label>
+      <select id='tag-id' name='tag-id' type='text'>
+        @foreach (var tag in @Model["tags"])
+        {
+          <option value='@tag.GetId()'>@tag.GetName()</option>
+        }
+      </select>
+      <button type='submit' class='btn btn-default'>Read</button>
+    </form>
+  </div>
+
+  <div class="col-md-5"
+    @foreach (var post in @Model["posts"])
+    {
+      <h4><a href="\\\\\\\\\">@post.GetTitle()</a></h4>
+      <p>@post.GetName() @post.GetStartDate()</p>
+    }
+  </div>
+
+  <div class="col-md-3">
+    <a href="/post/form"><button class="btn btn-default">Add a new post</button></a>
+  </div>
+</div>
+
+
+
+countries
+cities
+
+
+
+popular tags
+
+top 10 cities

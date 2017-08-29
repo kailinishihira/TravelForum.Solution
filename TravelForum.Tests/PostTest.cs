@@ -25,6 +25,7 @@ namespace TravelForum.Tests
 
       Assert.AreEqual(newPost, newPost2);
     }
+
     [TestMethod]
     public void Save_SavesNewPostToDatabase_Post()
     {
@@ -45,7 +46,7 @@ namespace TravelForum.Tests
 
       int expected = newPost.GetId();
       int actual = Post.GetAll()[0].GetId();
-
+      
       Assert.AreEqual(expected, actual);
     }
 
@@ -95,10 +96,22 @@ namespace TravelForum.Tests
       Assert.AreEqual(expected, actual);
     }
 
-    // [TestMethod]
-    // public void AddTag_AddsTagToPost_Post()
-    // {
-    //
-    // }
+    [TestMethod]
+    public void AddTag_AddsTagToPost_Post()
+    {
+      Post newPost = new Post("Title", "name", default(DateTime), default(DateTime), "It was fun");
+      newPost.Save();
+
+      Tag newTag = new Tag("name");
+      newTag.Save();
+      int id = newTag.GetId();
+
+      newPost.AddTag(id);
+
+      var expected = newTag.GetId();
+      var actual = newPost.GetTags()[0].GetId();
+
+      Assert.AreEqual(expected, actual);
+    }
   }
 }
