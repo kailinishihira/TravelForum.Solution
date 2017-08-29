@@ -93,5 +93,22 @@ namespace TravelForum.Tests
 
       Assert.AreEqual(expected, actual);
     }
+
+    [TestMethod]
+    public void AddPost_AddsPostToATag_Post()
+    {
+      Post newPost = new Post("title", "name", default(DateTime), default(DateTime), "text", 1,1,1);
+      newPost.Save();
+
+      Tag newTag = new Tag("tagName");
+      newTag.Save();
+      newTag.AddPost(newPost.GetId());
+
+      int expected = newPost.GetId();
+      int actual = newTag.GetPosts()[0].GetId();
+
+      Assert.AreEqual(expected, actual);
+
+    }
   }
 }
