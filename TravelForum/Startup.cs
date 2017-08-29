@@ -35,6 +35,6 @@ namespace TravelForum
 
   public static class DBConfiguration
     {
-        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=travel_forum;";
+        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=travel_forum_test;";
     }
 }

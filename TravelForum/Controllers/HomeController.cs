@@ -135,15 +135,15 @@ namespace TravelForum.Controllers
       int countryId = int.Parse(Request.Form["country"]);
       int regionId = int.Parse(Request.Form["region"]);
 
-      var cities = City.Find(cityId);
-      var countries = Country.Find(countryId);
-      var regions = Region.Find(regionId);
-      var newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
+      City city = City.Find(cityId);
+      Country country = Country.Find(countryId);
+      Region region = Region.Find(regionId);
+      Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
+      newPost.Save();
 
-
-      model.Add("cities", cities);
-      model.Add("countries", countries);
-      model.Add("regions", regions);
+      model.Add("city", city);
+      model.Add("country", country);
+      model.Add("region", region);
       model.Add("post",  newPost);
       return View(model);
     }
@@ -161,15 +161,15 @@ namespace TravelForum.Controllers
       int countryId = int.Parse(Request.Form["country"]);
       int regionId = int.Parse(Request.Form["region"]);
 
-      var cities = City.Find(cityId);
-      var countries = Country.Find(countryId);
-      var regions = Region.Find(regionId);
-      var newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
+      City city = City.Find(cityId);
+      Country country = Country.Find(countryId);
+      Region region = Region.Find(regionId);
+      Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
       newPost.Save();
 
-      model.Add("cities", cities);
-      model.Add("countries", countries);
-      model.Add("regions", regions);
+      model.Add("city", city);
+      model.Add("country", country);
+      model.Add("region", region);
       model.Add("post",  newPost);
       return View("PostDetails", model);
     }
@@ -177,28 +177,18 @@ namespace TravelForum.Controllers
     [HttpGet("/update/{postId}")]
     public ActionResult UpdatePost(int postId)
     {
+      Post postToUpdate = Post.Find(postId);
+
       var model = new Dictionary<string,object>{};
-      string title = Request.Form["title"];
-      string name = Request.Form["name"];
-      DateTime start = DateTime.Parse(Request.Form["start-date"]);
-      DateTime end = DateTime.Parse(Request.Form["end-date"]);
-      string text = Request.Form["text"];
-      int cityId = int.Parse(Request.Form["city"]);
-      int countryId = int.Parse(Request.Form["country"]);
-      int regionId = int.Parse(Request.Form["region"]);
-
-      var postToUpdate = Post.Find(postId);
-      var cities = City.Find(cityId);
-      var countries = Country.Find(countryId);
-      var regions = Region.Find(regionId);
-
-      postToUpdate.Update(title, name, start, end, text, cityId, countryId, regionId);
-      model.Add("cities", cities);
-      model.Add("countries", countries);
-      model.Add("regions", regions);
+      City city = City.Find(postToUpdate.GetCityId());
+      Country country = Country.Find(postToUpdate.GetCountryId());
+      Region region = Region.Find(postToUpdate.GetRegionId());
+      model.Add("city", city);
+      model.Add("country", country);
+      model.Add("region", region);
       model.Add("post",  postToUpdate);
 
-      return View("PostSummary", model);
+      return View(model);
     }
   }
 }
