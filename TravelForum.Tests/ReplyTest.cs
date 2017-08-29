@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using TravelForum.Models;
 
@@ -88,6 +87,24 @@ namespace TravelForum.Tests
       Reply actual = Reply.GetAll()[0];
       Assert.AreEqual(expected, actual);
     }
+    [TestMethod]
+    public void GetRepliesByPostId_GetRepliesByPostId_ReplyList()
+    {
+      Reply testReply = new Reply("Great Post", "I really liked your post about your travels", 1);
+      testReply.Save();
+
+      Reply testReply2 = new Reply("I kind of liked your post", "Here is some text about how I liked your post", 2);
+      testReply2.Save();
+
+      Reply testReply3 = new Reply("This is the worst post ever", "Here is some text about how this is the worst post in the world", 2);
+      testReply3.Save();
+
+      List<Reply> expected = new List<Reply> {testReply2, testReply3};
+      List<Reply> actual = Reply.GetRepliesByPostId(2);
+
+      CollectionAssert.AreEqual(expected, actual);
+    }
+
 
     [TestMethod]
     public void Delete_DeletesReplyFromDatabase_ReplyList()
@@ -107,50 +124,5 @@ namespace TravelForum.Tests
       CollectionAssert.AreEqual(testReplyList, resultReplys);
     }
 
-    [TestMethod]
-    public void AddPost_AddsPostToJoinTable_PostList()
-    {
-      //Arrange
-      Reply testReply = new Reply("Great Post", "I really liked your post about your travels", 1);
-      testReply.Save();
-
-      Post testPost1 = new Post("Title", "name", default(DateTime), default(DateTime), "It was not fun");
-      testPost1.Save();
-      Post testPost2 = new Post("Title1", "name1", default(DateTime), default(DateTime), "It was super fun");
-      testPost2.Save();
-
-      //Act
-      testBand.AddPostToJoinTable(testPost1);
-      testBand.AddPostToJoinTable(testPost2);
-
-      List<Post> result = testBand.GetPosts();
-      List<Post> testList = new List<Post>{testPost1, testPost2};
-
-      //Assert
-      CollectionAssert.AreEqual(testList, result);
-    }
-
-    [TestMethod]
-    public void GetPosts_ReturnsAllPostBands_PostList()
-    {
-      //Arrange
-      Reply testReply = new Reply("Great Post", "I really liked your post about your travels", 1);
-      testReply.Save();
-
-      Post testPost1 = new Post("Title", "name", default(DateTime), default(DateTime), "It was not fun");
-      testPost1.Save();
-      Post testPost2 = new Post("Title1", "name1", default(DateTime), default(DateTime), "It was super fun");
-      testPost2.Save();
-
-      //Act
-      testBand.AddPostToJoinTable(testPost1);
-      testBand.AddPostToJoinTable(testPost2);
-
-      List<Post> result = testBand.GetPosts();
-      List<Post> testList = new List<Post>{testPost1, testPost2};
-
-      //Assert
-      CollectionAssert.AreEqual(testList, result);
-    }
   }
 }

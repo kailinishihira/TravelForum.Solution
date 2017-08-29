@@ -180,10 +180,40 @@ namespace TravelForum.Models
         {
           conn.Dispose();
         }
-
     }
 
-    public void Delete()
+    public static List<Reply> GetRepliesByPostId(int id)
+    {
+      List<Reply> replyList = new List<Reply> {};
+
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM replies WHERE post_id = @postId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@postId";
+      searchId.Value = id;
+      cmd.Parameters.Add(searchId);
+
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int replyId = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string text = rdr.GetString(2);
+        int post_id = rdr.GetInt32(3);
+
+        Reply newReply = new Reply(name, text, post_id, replyId);
+        replyList.Add(newReply);
+      }
+      conn.Close();
+      return replyList;
+     }
+
+     public void Delete()
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -199,6 +229,7 @@ namespace TravelForum.Models
       cmd.ExecuteNonQuery();
       conn.Close();
     }
+
 
    public static void DeleteAll()
    {
