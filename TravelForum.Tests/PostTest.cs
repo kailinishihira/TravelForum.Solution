@@ -47,7 +47,7 @@ namespace TravelForum.Tests
 
       int expected = newPost.GetId();
       int actual = Post.GetAll()[0].GetId();
-
+      
       Assert.AreEqual(expected, actual);
     }
 
