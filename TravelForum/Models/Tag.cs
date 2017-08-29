@@ -161,6 +161,73 @@ namespace TravelForum.Models
       }
     }
 
+    public void AddPost(int postId)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO posts_tags(post_id, tag_id) VALUES (@postId, @tagId);";
+
+      MySqlParameter postIdParam = new MySqlParameter();
+      postIdParam.ParameterName = "@postId";
+      postIdParam.Value = postId;
+      cmd.Parameters.Add(postIdParam);
+
+      MySqlParameter tagIdParam = new MySqlParameter();
+      tagIdParam.ParameterName = "@tagId";
+      tagIdParam.Value = _id;
+      cmd.Parameters.Add(tagIdParam);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public List<Post> GetPosts()
+    {
+      List<Post> allPosts = new List<Post>{};
+
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT posts.*
+      FROM tags
+      JOIN posts_tags ON (tags.id = posts_tags.tag_id)
+      JOIN posts ON (posts.id = posts_tags.post_id)
+      WHERE tags.id = @tagId;";
+
+      MySqlParameter tagIdParam = new MySqlParameter();
+      tagIdParam.ParameterName = "@tagId";
+      tagIdParam.Value = _id;
+      cmd.Parameters.Add(tagIdParam);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string title = rdr.GetString(1);
+        string name = rdr.GetString(2);
+        DateTime startDate = rdr.GetDateTime(3);
+        DateTime endDate = rdr.GetDateTime(4);
+        string text = rdr.GetString(5);
+        int cityId = rdr.GetInt32(6);
+        int countryId = rdr.GetInt32(7);
+        int regionId = rdr.GetInt32(8);
+        Post newPost = new Post(title, name, startDate, endDate, text, cityId, countryId, regionId, id);
+        allPosts.Add(newPost);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allPosts;
+
+    }
     public void Delete()
     {
       MySqlConnection conn = DB.Connection();
