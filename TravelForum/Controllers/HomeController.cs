@@ -113,71 +113,72 @@ namespace TravelForum.Controllers
       return View("Index", model);
     }
 
-    // [HttpGet("/post/form")]
-    // public ActionResult PostForm()
-    // {
-    //   Dictionary<string, object> model = new Dictionary<string, object> {};
-    //
-    //   List<Region> allRegions = Region.GetAll();
-    //   model.Add("regions", allRegions);
-    //   List<Country> allCountries = Country.GetAll();
-    //   model.Add("countries", allCountries);
-    //   List<City> allCities = City.GetAll();
-    //   model.Add("cities", allCities);
-    //   List<Tag> allTags = Tag.GetAll();
-    //   model.Add("tags", allTags);
-    //
-    //   return View(model);
-    // }
-    //
-    // [HttpPost("/form/summary")]
-    // public ActionResult PostSummary()
-    // {
-    //   var model = new Dictionary<string,object>{};
-    //   string title = Request.Form["title"];
-    //   string name = Request.Form["name"];
-    //   DateTime start = DateTime.Parse(Request.Form["start-date"]);
-    //   DateTime end = DateTime.Parse(Request.Form["end-date"]);
-    //   string text = Request.Form["text"];
-    //   int cityId = int.Parse(Request.Form["city"]);
-    //   int countryId = int.Parse(Request.Form["country"]);
-    //   int regionId = int.Parse(Request.Form["region"]);
-    //   int tagId = int.Parse(Request.Form["tag"]);
-    //
-    //   City city = City.Find(cityId);
-    //   Country country = Country.Find(countryId);
-    //   Region region = Region.Find(regionId);
-    //   Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
-    //   newPost.Save();
-    //   newPost.AddTag(tagId);
-    //   List<Tag> postTags = newPost.GetTags();
-    //
-    //   model.Add("city", city);
-    //   model.Add("country", country);
-    //   model.Add("region", region);
-    //   model.Add("post",  newPost);
-    //   model.Add("tags", postTags);
-    //   model.Add("tagId", tagId);
-    //   return View(model);
-    // }
-    //
-    // [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/view-post")]
-    // public ActionResult ViewPost(int postId, int regionId, int countryId, int cityId)
-    // {
-    //   var model = new Dictionary<string, object> {};
-    //   Post post = Post.Find(postId);
-    //   List<Reply> replyList = Reply.GetRepliesByPostId(postId);
-    //   Region region = Region.Find(regionId);
-    //   Country country = Country.Find(countryId);
-    //   City city = City.Find(cityId);
-    //   model.Add("post", post);
-    //   model.Add("replyList", replyList);
-    //   model.Add("region", region);
-    //   model.Add("country", country);
-    //   model.Add("city", city);
-    //
-    //   return View("PostDetails", model);
-    // }
+    [HttpGet("/post/form")]
+    public ActionResult PostForm()
+    {
+      Dictionary<string, object> model = new Dictionary<string, object> {};
+
+      List<Region> allRegions = Region.GetAll();
+      model.Add("regions", allRegions);
+      List<Country> allCountries = Country.GetAll();
+      model.Add("countries", allCountries);
+      List<City> allCities = City.GetAll();
+      model.Add("cities", allCities);
+      List<Tag> allTags = Tag.GetAll();
+      model.Add("tags", allTags);
+
+      return View(model);
+    }
+
+    [HttpPost("/form/summary")]
+    public ActionResult PostSummary()
+    {
+      var model = new Dictionary<string,object>{};
+      string title = Request.Form["title"];
+      string name = Request.Form["name"];
+      DateTime start = DateTime.Parse(Request.Form["start-date"]);
+      DateTime end = DateTime.Parse(Request.Form["end-date"]);
+      string text = Request.Form["text"];
+      int cityId = int.Parse(Request.Form["city"]);
+      int countryId = int.Parse(Request.Form["country"]);
+      int regionId = int.Parse(Request.Form["region"]);
+      int tagId = int.Parse(Request.Form["tag"]);
+
+      City city = City.Find(cityId);
+      Country country = Country.Find(countryId);
+      Region region = Region.Find(regionId);
+      Post newPost = new Post(title, name, start, end, text);
+      newPost.Save();
+      newPost.AddTag(tagId);
+      newPost.AddCity(cityId);
+      List<Tag> postTags = newPost.GetTags();
+
+      model.Add("city", city);
+      model.Add("country", country);
+      model.Add("region", region);
+      model.Add("post",  newPost);
+      model.Add("tags", postTags);
+      model.Add("tagId", tagId);
+      return View(model);
+    }
+
+    [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/view-post")]
+    public ActionResult ViewPost(int postId, int regionId, int countryId, int cityId)
+    {
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      model.Add("post", post);
+      model.Add("replyList", replyList);
+      model.Add("region", region);
+      model.Add("country", country);
+      model.Add("city", city);
+
+      return View("PostDetails", model);
+    }
     //
     // [HttpGet("/update/{postId}")]
     // public ActionResult UpdatePost(int postId)
