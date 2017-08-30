@@ -339,10 +339,10 @@ namespace TravelForum.Controllers
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
-      List<Tag> allTags = Tag.GetAll();
-      List<Tag> getTags = post.GetTags();
       Tag thisTag = Tag.Find(tagId);
       post.DeleteTag(thisTag);
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
       model.Add("allTags", allTags);
       model.Add("post", post);
       model.Add("replyList", replyList);
