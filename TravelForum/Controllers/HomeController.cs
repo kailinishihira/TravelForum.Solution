@@ -198,18 +198,29 @@ namespace TravelForum.Controllers
       return View(model);
     }
     [HttpGet("/update-post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
-    public ActionResult UpdatePostFromDetails(int postId)
+    public ActionResult UpdatePostFromDetails(int postId, int regionId, int countryId, int cityId)
     {
-      Post postToUpdate = Post.Find(postId);
 
-      var model = new Dictionary<string,object>{};
-      City city = City.Find(postToUpdate.GetCityId());
-      Country country = Country.Find(postToUpdate.GetCountryId());
-      Region region = Region.Find(postToUpdate.GetRegionId());
-      model.Add("city", city);
-      model.Add("country", country);
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      List<City> allCities = City.GetAll();
+      List<Country> allCountries = Country.GetAll();
+      List<Region> allRegions = Region.GetAll();
+
+      Console.WriteLine(post.GetStartDate());
+      Console.WriteLine(post.GetEndDate());
+
+      model.Add("startDate", post.GetStartDate());
+      model.Add("post", post);
       model.Add("region", region);
-      model.Add("post",  postToUpdate);
+      model.Add("country", country);
+      model.Add("city", city);
+      model.Add("allcities", allCities);
+      model.Add("allcountries", allCountries);
+      model.Add("allregions", allRegions);
 
       return View(model);
     }
@@ -226,7 +237,11 @@ namespace TravelForum.Controllers
       int cityIdForm = int.Parse(Request.Form["city"]);
       int countryIdForm = int.Parse(Request.Form["country"]);
       int regionIdForm = int.Parse(Request.Form["region"]);
+
+
+
       postToUpdate.Update(title, name, start, end, text, cityIdForm, countryIdForm, regionIdForm);
+
 
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
@@ -235,10 +250,13 @@ namespace TravelForum.Controllers
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
       model.Add("post", post);
+      Console.WriteLine(City.Find(post.GetCityId()).GetName());
+      Console.WriteLine(Country.Find(post.GetCountryId()).GetName());
+      Console.WriteLine(Region.Find(post.GetRegionId()).GetName());
       model.Add("replyList", replyList);
-      model.Add("region", region);
-      model.Add("country", country);
-      model.Add("city", city);
+      model.Add("region", Region.Find(post.GetRegionId()));
+      model.Add("country", Country.Find(post.GetCountryId()));
+      model.Add("city", City.Find(post.GetCityId()));
 
       // City city = City.Find(cityId);
       // Country country = Country.Find(countryId);
