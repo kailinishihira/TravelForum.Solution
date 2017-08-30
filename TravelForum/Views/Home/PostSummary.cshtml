@@ -1,6 +1,6 @@
 <body id="post-form">
-
   <h1>Here is your post summary:</h1>
+
   <h4>Title:</h4>
   <p>@Model["post"].GetTitle()</p>
   <h4>Name:</h4>
@@ -17,11 +17,9 @@
   <p>@Model["country"].GetName()</p>
   <h4>City:</h4>
   <p>@Model["city"].GetName()</p>
-
   <div>
-    <a href='/post/@Model["post"].GetId()/region/@Model.["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()/view-post'> <button class="btn btn-info">View Post</button></a>
+    <a href='/post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()/view-post'> <button class="btn btn-info">View Post</button></a>
     <a href='/update/@Model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
     <a href='/'><button class="btn btn-danger"> Go Home</button></a>
   </div>
-
 </body>
