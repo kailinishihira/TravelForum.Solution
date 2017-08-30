@@ -170,11 +170,15 @@ namespace TravelForum.Controllers
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", region);
       model.Add("country", country);
       model.Add("city", city);
+      model.Add("allTags", allTags);
+      model.Add("postTags", getTags);
 
       return View("PostDetails", model);
     }
@@ -189,11 +193,15 @@ namespace TravelForum.Controllers
       Country country = Country.Find(postToUpdate.GetCountryId());
       Region region = Region.Find(postToUpdate.GetRegionId());
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = postToUpdate.GetTags();
       model.Add("city", city);
       model.Add("country", country);
       model.Add("region", region);
       model.Add("post",  postToUpdate);
       model.Add("replyList", replyList);
+      model.Add("allTags", allTags);
+      model.Add("postTags", getTags);
 
       return View(model);
     }
