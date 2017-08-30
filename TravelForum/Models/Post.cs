@@ -29,6 +29,7 @@ namespace TravelForum.Models
       _regionId = regionId;
     }
 
+
     public int GetId()
     {
       return _id;
@@ -289,6 +290,7 @@ namespace TravelForum.Models
       cmd.Parameters.Add(idParam);
 
       cmd.ExecuteNonQuery();
+
       _id = (int) cmd.LastInsertedId;
       conn.Close();
       if (conn != null)
