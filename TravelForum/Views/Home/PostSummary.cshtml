@@ -1,71 +1,25 @@
 <body id="post-form">
   <h1>Here is your post summary:</h1>
 
-<<<<<<< HEAD
-      <h4>Title:</h4>
-      <p>@Model["post"].GetTitle()</p>
-      <h4>Name:</h4>
-      <p>@Model["post"].GetName()</p>
-      <h4>Start Date:</h4>
-      <p>@Model["post"].GetStartDate()</p>
-      <h4>End Date:</h4>
-      <p>@Model["post"].GetEndDate()</p>
-      <h4>Text:</h4>
-      <p>@Model["post"].GetText()</p>
-      <h4>Region:</h4>
-      <p>@Model["region"].GetName()</p>
-      <h4>Country:</h4>
-      <p>@Model["country"].GetName()</p>
-      <h4>City:</h4>
-      <p>@Model["city"].GetName()</p>
-      <div>
-        <a href='/form/summary/create'> <button class="btn btn-info">View Post</button></a>
-        <a href='/update/@Model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
-        <a href='/'><button class="btn btn-danger"> Go Home</button></a>
-      </div>
-
-
-=======
-  <form action="/form/summary/create" method="post" class="form-group">
-    <label for="title">Title:</label>
-    <input type="text" class="form-control" name="title" value='@Model["post"].GetTitle()'required>
-    <label for="name">Your name:</label>
-    <input type="text" class="form-control" name="name" value='@Model["post"].GetName()'required>
-    <label for="start-date">Travel start date:</label>
-    <input type="date" class="form-control" name="start-date" value='@Model["post"].GetStartDate()'required>
-    <label for="end-date">Travel end date:</label>
-    <input type="date" class="form-control" name="end-date" value='@Model["post"].GetEndDate()'required>
-    <label for="text">Text:</label>
-    <input type="text" class="form-control" name="text" value='@Model["post"].GetText()'required>
-
-    <label for="region">Region:</label>
-    <select class="selectpicker" name="region">
-      @foreach(var region in Model["regions"])
-      {
-          <option value="@region.GetId()">@region.GetName()</option>
-      }
-    </select>
-
-    <label for="country">Country:</label>
-    <select class="selectpicker" name="country">
-      @foreach(var country in Model["countries"])
-      {
-          <option value="@country.GetId()">@country.GetName()</option>
-      }
-    </select>
-
-    <label for="city">City:</label>
-    <select class="selectpicker" name="city">
-      @foreach(var city in Model["cities"])
-      {
-          <option value="@city.GetId()">@city.GetName()</option>
-      }
-    </select>
-    <button type="submit" class="btn btn-success">Proceed</button>
-    <div>
-      <a href='/update/@Model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
-      <a href='/'><button class="btn btn-info"> Cancel</button></a>
-    </div>
-  </form>
->>>>>>> rmkn
+  <h4>Title:</h4>
+  <p>@Model["post"].GetTitle()</p>
+  <h4>Name:</h4>
+  <p>@Model["post"].GetName()</p>
+  <h4>Start Date:</h4>
+  <p>@Model["post"].GetStartDate()</p>
+  <h4>End Date:</h4>
+  <p>@Model["post"].GetEndDate()</p>
+  <h4>Text:</h4>
+  <p>@Model["post"].GetText()</p>
+  <h4>Region:</h4>
+  <p>@Model["region"].GetName()</p>
+  <h4>Country:</h4>
+  <p>@Model["country"].GetName()</p>
+  <h4>City:</h4>
+  <p>@Model["city"].GetName()</p>
+  <div>
+    <a href='/post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()/view-post'> <button class="btn btn-info">View Post</button></a>
+    <a href='/update/@Model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
+    <a href='/'><button class="btn btn-danger"> Go Home</button></a>
+  </div>
 </body>

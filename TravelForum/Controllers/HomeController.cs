@@ -154,29 +154,21 @@ namespace TravelForum.Controllers
       return View(model);
     }
 
-    [HttpPost("/form/summary/create")]
-    public ActionResult CreatePost()
+    [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/view-post")]
+    public ActionResult ViewPost(int postId, int regionId, int countryId, int cityId)
     {
-      var model = new Dictionary<string,object>{};
-      string title = Request.Form["title"];
-      string name = Request.Form["name"];
-      DateTime start = DateTime.Parse(Request.Form["start-date"]);
-      DateTime end = DateTime.Parse(Request.Form["end-date"]);
-      string text = Request.Form["text"];
-      int cityId = int.Parse(Request.Form["city"]);
-      int countryId = int.Parse(Request.Form["country"]);
-      int regionId = int.Parse(Request.Form["region"]);
-
-      City city = City.Find(cityId);
-      Country country = Country.Find(countryId);
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
       Region region = Region.Find(regionId);
-      Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
-      newPost.Save();
-
-      model.Add("city", city);
-      model.Add("country", country);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      model.Add("post", post);
+      model.Add("replyList", replyList);
       model.Add("region", region);
-      model.Add("post",  newPost);
+      model.Add("country", country);
+      model.Add("city", city);
+
       return View("PostDetails", model);
     }
 
@@ -270,7 +262,7 @@ namespace TravelForum.Controllers
     }
 
     [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
-    public ActionResult PostThePostDetails(int postId, int regionId, int countryId, int cityId)
+    public ActionResult PostReplyToPostDetails(int postId, int regionId, int countryId, int cityId)
     {
 
       string replyName = Request.Form["reply-name"];
