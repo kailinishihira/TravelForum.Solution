@@ -172,7 +172,6 @@ namespace TravelForum.Controllers
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
       List<Tag> allTags = Tag.GetAll();
-      List<Tag> getTags = post.GetTags();
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", region);
@@ -400,6 +399,8 @@ namespace TravelForum.Controllers
       List<City> allCities = City.GetAll();
       List<Country> allCountries = Country.GetAll();
       List<Region> allRegions = Region.GetAll();
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
 
       model.Add("post", post);
       model.Add("region", region);
@@ -429,11 +430,17 @@ namespace TravelForum.Controllers
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
+
+
+      model.Add("allTags", allTags);
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", Region.Find(post.GetRegionId()));
       model.Add("country", Country.Find(post.GetCountryId()));
       model.Add("city", City.Find(post.GetCityId()));
+      model.Add("postTags", getTags);
 
       // City city = City.Find(cityId);
       // Country country = Country.Find(countryId);
@@ -468,7 +475,10 @@ namespace TravelForum.Controllers
       List<City> allCities = City.GetAll();
       List<Country> allCountries = Country.GetAll();
       List<Region> allRegions = Region.GetAll();
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
 
+      model.Add("allTags", allTags);
       model.Add("post", post);
       model.Add("region", region);
       model.Add("country", country);
@@ -477,6 +487,7 @@ namespace TravelForum.Controllers
       model.Add("allcities", allCities);
       model.Add("allcountries", allCountries);
       model.Add("allregions", allRegions);
+      model.Add("postTags", getTags);
 
       return View("PostDetails",model);
     }

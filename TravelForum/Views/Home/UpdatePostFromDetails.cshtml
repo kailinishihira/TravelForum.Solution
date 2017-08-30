@@ -13,7 +13,7 @@
       <label for="end-date">Travel end date:</label>
       <input type="date" class="form-control" name="end-date" value='@Model["post"].GetEndDate()' required>
       <label for="text">Text:</label>
-      <input type="text" class="form-control" name="text" value='@Model["post"].GetText()' required>
+      <textarea type="text" class="form-control" rows="10" name="text" required>@Model["post"].GetText()</textarea>
 
       <label for="region">Region:</label>
       <select class="selectpicker" name="region">
@@ -58,7 +58,7 @@
 
       <div>
         <a href='/update-post/updated/@Model["post"].GetId()'> <button type="submit" class="btn btn-success">Save Update </button></a>
-        <a href='/' class="btn btn-info"> Cancel  </a>
+        <a href='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/' class="btn btn-info"> Cancel  </a>
       </div>
     </form>
 
