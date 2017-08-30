@@ -16,6 +16,7 @@ namespace TravelForum.Models
     private int _countryId;
     private int _regionId;
 
+
     public Post(string title, string name, DateTime startDate, DateTime endDate, string text, int cityId = 0, int countryId = 0, int regionId = 0, int id=0)
     {
       _id= id;
@@ -297,11 +298,7 @@ namespace TravelForum.Models
       {
         conn.Dispose();
       }
-
-
-
     }
-
     public void AddTag(int tagId)
     {
       MySqlConnection conn = DB.Connection();

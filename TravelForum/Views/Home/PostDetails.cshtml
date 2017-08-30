@@ -48,13 +48,13 @@
 
 @foreach(var reply in @Model["replyList"])
 {
-  <div class="well">
-    <h4>@reply.GetName()</h4>
-    <p>@reply.GetText()</p>
+<div class="well">
+  <h4>@reply.GetName()<a href='/update-reply/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/reply/@reply.GetId()' class="btn btn-info">Update reply</a>
+  <a href='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/reply/@reply.GetId()/deleted-reply' class="btn btn-danger">Delete reply</a></h4>
+  <p>@reply.GetText()</p>
   </div>
 }
 
------
 
 <div class="form-group">
   <form action="/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["region"].GetId()/city/["city"].GetId" method="post">

@@ -224,7 +224,6 @@ namespace TravelForum.Controllers
       List<Country> allCountries = Country.GetAll();
       List<Region> allRegions = Region.GetAll();
       List<Tag> allTags = Tag.GetAll();
-
       model.Add("startDate", post.GetStartDate());
       model.Add("post", post);
       model.Add("region", region);
@@ -386,12 +385,98 @@ namespace TravelForum.Controllers
       return View("PostDetails", model);
     }
 
+    [HttpGet("/update-reply/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/reply/{replyId}")]
+    public ActionResult UpdateReplyFromDetails(int postId, int regionId, int countryId, int cityId, int replyId)
+    {
+
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      Reply reply = Reply.Find(replyId);
+      List<City> allCities = City.GetAll();
+      List<Country> allCountries = Country.GetAll();
+      List<Region> allRegions = Region.GetAll();
+
+      model.Add("post", post);
+      model.Add("region", region);
+      model.Add("country", country);
+      model.Add("city", city);
+      model.Add("reply", reply);
+      model.Add("allcities", allCities);
+      model.Add("allcountries", allCountries);
+      model.Add("allregions", allRegions);
+
+      return View(model);
+    }
+
+    [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/reply/{replyId}/updated")]
+    public ActionResult ReplyFormUpdated(int postId, int regionId, int countryId, int cityId, int replyId)
+    {
+      Reply replyToUpdate = Reply.Find(replyId);
+      string name = Request.Form["name"];
+      string text = Request.Form["text"];
+
+      replyToUpdate.Update(name, text);
+
+
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      model.Add("post", post);
+      model.Add("replyList", replyList);
+      model.Add("region", Region.Find(post.GetRegionId()));
+      model.Add("country", Country.Find(post.GetCountryId()));
+      model.Add("city", City.Find(post.GetCityId()));
+
+      // City city = City.Find(cityId);
+      // Country country = Country.Find(countryId);
+      // Region region = Region.Find(regionId);
+      // Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
+      // newPost.Save();
+
+
+      return View("PostDetails", model);
+    }
+
     [HttpGet("/delete/{id}")]
     public ActionResult DeletePost(int id)
     {
       Post postToDelete = Post.Find(id);
       postToDelete.Delete();
       return View(postToDelete);
+    }
+
+    [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/reply/{replyId}/deleted-reply")]
+    public ActionResult DeleteReply(int postId, int regionId, int countryId, int cityId, int replyId)
+    {
+      Reply replyToDelete = Reply.Find(replyId);
+      replyToDelete.Delete();
+
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      List<City> allCities = City.GetAll();
+      List<Country> allCountries = Country.GetAll();
+      List<Region> allRegions = Region.GetAll();
+
+      model.Add("post", post);
+      model.Add("region", region);
+      model.Add("country", country);
+      model.Add("city", city);
+      model.Add("replyList", replyList);
+      model.Add("allcities", allCities);
+      model.Add("allcountries", allCountries);
+      model.Add("allregions", allRegions);
+
+      return View("PostDetails",model);
     }
   }
 }
