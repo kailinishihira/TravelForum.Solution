@@ -166,7 +166,6 @@ namespace TravelForum.Controllers
     {
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
-      List<Tag> getTags = post.GetTags();
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
@@ -188,7 +187,6 @@ namespace TravelForum.Controllers
     public ActionResult UpdatePost(int postId)
     {
       Post postToUpdate = Post.Find(postId);
-
       var model = new Dictionary<string,object>{};
       City city = City.Find(postToUpdate.GetCityId());
       Country country = Country.Find(postToUpdate.GetCountryId());
@@ -255,10 +253,7 @@ namespace TravelForum.Controllers
       postToUpdate.AddTag(tagId);
       List<Tag> getTags = postToUpdate.GetTags();
 
-
-
       postToUpdate.Update(title, name, start, end, text, cityIdForm, countryIdForm, regionIdForm);
-
 
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
@@ -274,13 +269,6 @@ namespace TravelForum.Controllers
       model.Add("city", City.Find(post.GetCityId()));
       model.Add("allTags", allTags);
       model.Add("postTags", getTags);
-
-      // City city = City.Find(cityId);
-      // Country country = Country.Find(countryId);
-      // Region region = Region.Find(regionId);
-      // Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
-      // newPost.Save();
-
 
       return View("PostDetails", model);
     }
@@ -434,13 +422,6 @@ namespace TravelForum.Controllers
       model.Add("region", Region.Find(post.GetRegionId()));
       model.Add("country", Country.Find(post.GetCountryId()));
       model.Add("city", City.Find(post.GetCityId()));
-
-      // City city = City.Find(cityId);
-      // Country country = Country.Find(countryId);
-      // Region region = Region.Find(regionId);
-      // Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
-      // newPost.Save();
-
 
       return View("PostDetails", model);
     }

@@ -57,7 +57,8 @@
     {
       <h4><a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">@post.GetTitle()</a></h4>
       <p>@post.GetName() @post.GetStartDate().ToString("MM/dd/yyyy")</p>
-      <p>@post.GetText().Substring(0,200)...<a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
+      <p> @post.GetText().Substring(0,200)...
+      <a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()"> Click here to read </a></p>
     }
   </div>
 
