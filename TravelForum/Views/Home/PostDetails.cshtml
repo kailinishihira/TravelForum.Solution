@@ -1,6 +1,6 @@
 <div class="form-group">
   <a href="/" class="btn btn-default">Home</a>
-  <a href='/update-post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()' class="btn btn-info">Update post</a>
+  <a href='/update-post/@Model["post"].GetId()' class="btn btn-info">Update post</a>
   <a href='/delete/@Model["post"].GetId()' class="btn btn-danger">Delete post</a>
 </div>
 
@@ -11,13 +11,15 @@
     <h4>By: @Model["post"].GetName()</h4>
     <h4>Trip Duration: @Model["post"].GetStartDate().ToString("MM/dd/yyyy") - @Model["post"].GetEndDate().ToString("MM/dd/yyyy")</h4>
     <h4>Region: @Model["region"].GetName()</h4>
-    <h4>Country: @Model["country"].GetName()</h4>
-    <h4>City: @Model["city"].GetName()</h4>
+    @for(int i = 0; i < @Model["cities"].Count; i++)
+    {
+      <h4>City: @Model["cities"][i].GetName(), @Model["countries"][i].GetName()</h4>
+    }
   </div>
 
   <div class="col-md-4">
     <div class="well">
-      <form action='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/add-tags' method="post">
+      <form action='/post/@Model["post"].GetId()/add-tags' method="post">
         <label for="tags">Add tags:</label>
           <select class="selectpicker" name="tags">
             @foreach(var tag in Model["allTags"])
@@ -57,7 +59,7 @@
 -----
 
 <div class="form-group">
-  <form action="/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["region"].GetId()/city/["city"].GetId" method="post">
+  <form action="/post/@Model["post"].GetId()" method="post">
   <label for="reply">Add a reply:</label>
   <input type="text" placeholder="Your Name" name="reply-name">
   <textarea class="form-control" rows="5" name="reply-text"></textarea>

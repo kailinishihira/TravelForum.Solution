@@ -141,9 +141,6 @@ namespace TravelForum.Models
         DateTime startDate = rdr.GetDateTime(3);
         DateTime endDate = rdr.GetDateTime(4);
         string text = rdr.GetString(5);
-        int cityId = rdr.GetInt32(6);
-        int countryId = rdr.GetInt32(7);
-        int regionId = rdr.GetInt32(8);
         Post newPost = new Post(title, name, startDate, endDate, text, id);
         allPosts.Add(newPost);
       }
@@ -348,7 +345,7 @@ namespace TravelForum.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT cities.* FROM posts JOIN cities_posts ON (posts.id = cities_posts.city_id) JOIN cities ON (cities.id = cities_posts.city_id WHERE posts.id = @postId);";
+      cmd.CommandText = @"SELECT cities.* FROM posts JOIN cities_posts ON (posts.id = cities_posts.post_id) JOIN cities ON (cities.id = cities_posts.city_id) WHERE posts.id = @postId;";
 
       MySqlParameter postIdParam = new MySqlParameter();
       postIdParam.ParameterName = "@postId";
