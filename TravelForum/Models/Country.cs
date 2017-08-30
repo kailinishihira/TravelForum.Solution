@@ -184,41 +184,18 @@ namespace TravelForum.Models
 
     public List<Post> GetPosts()
     {
-      List<Post> allPosts = new List<Post> ();
-      MySqlConnection conn = DB.Connection();
-      conn.Open();
-      var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM posts WHERE country_id = @countryId;";
+      List<Post> countryPosts = new List<Post> ();
+      List<City> allCities = this.GetCities();
 
-      MySqlParameter countryIdParam = new MySqlParameter();
-      countryIdParam.ParameterName = "@countryId";
-      countryIdParam.Value = this._id;
-      cmd.Parameters.Add(countryIdParam);
-
-      var rdr = cmd.ExecuteReader() as MySqlDataReader;
-      while(rdr.Read())
+      foreach(var city in allCities)
       {
-        int postId = rdr.GetInt32(0);
-        string title = rdr.GetString(1);
-        string name = rdr.GetString(2);
-        DateTime startDate = rdr.GetDateTime(3);
-        DateTime endDate = rdr.GetDateTime(4);
-        string text = rdr.GetString(5);
-        int cityId = rdr.GetInt32(6);
-        int countryId = rdr.GetInt32(7);
-        int regionId = rdr.GetInt32(8);
-        Post newPost = new Post(title, name, startDate, endDate, text, cityId, countryId, regionId, postId);
-        allPosts.Add(newPost);
+        List<Post> cityPosts = city.GetPosts();
+        foreach(var post in cityPosts)
+        {
+          countryPosts.Add(post);
+        }
       }
-      conn.Close();
-      if (conn != null)
-      {
-        conn.Dispose();
-      }
-      return allPosts;
+      return countryPosts;
     }
-
-
-
   }
 }

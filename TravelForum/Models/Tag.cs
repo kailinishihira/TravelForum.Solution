@@ -214,10 +214,7 @@ namespace TravelForum.Models
         DateTime startDate = rdr.GetDateTime(3);
         DateTime endDate = rdr.GetDateTime(4);
         string text = rdr.GetString(5);
-        int cityId = rdr.GetInt32(6);
-        int countryId = rdr.GetInt32(7);
-        int regionId = rdr.GetInt32(8);
-        Post newPost = new Post(title, name, startDate, endDate, text, cityId, countryId, regionId, id);
+        Post newPost = new Post(title, name, startDate, endDate, text, id);
         allPosts.Add(newPost);
       }
       conn.Close();
