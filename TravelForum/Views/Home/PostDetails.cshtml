@@ -1,24 +1,57 @@
-
-
-<h3>@Model["post"].GetTitle()</h3>
-<h4>By: @Model["post"].GetName()</h4>
-<h4>Trip Duration: @Model["post"].GetStartDate().ToString("MM/dd/yyyy") - @Model["post"].GetEndDate().ToString("MM/dd/yyyy")</h4>
-<h4>Region: @Model["region"].GetName()</h4>
-<h4>Country: @Model["country"].GetName()</h4>
-<h4>City: @Model["city"].GetName()</h4>
-
 <div class="form-group">
-  <a href='/update-post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()' class="btn btn-info">Update post</a>
+  <a href="/" class="btn btn-default">Home</a>
+  <a href='/update-post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()' class="btn btn-info">Update post</a>
   <a href='/delete/@Model["post"].GetId()' class="btn btn-danger">Delete post</a>
 </div>
 
+<h3>@Model["post"].GetTitle()</h3>
+
+<div class="row">
+  <div class="col-md-8">
+    <h4>By: @Model["post"].GetName()</h4>
+    <h4>Trip Duration: @Model["post"].GetStartDate().ToString("MM/dd/yyyy") - @Model["post"].GetEndDate().ToString("MM/dd/yyyy")</h4>
+    <h4>Region: @Model["region"].GetName()</h4>
+    <h4>Country: @Model["country"].GetName()</h4>
+    <h4>City: @Model["city"].GetName()</h4>
+  </div>
+
+  <div class="col-md-4">
+    <div class="well">
+      <form action='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/add-tags' method="post">
+        <label for="tags">Add tags:</label>
+          <select class="selectpicker" name="tags">
+            @foreach(var tag in Model["allTags"])
+            {
+                <option value="@tag.GetId()">@tag.GetName()</option>
+            }
+          </select>
+        <button type="submit" class="btn btn-default">Add tag</button>
+      </form>
+
+      <div class="postTags">
+        <label for="postTags">Tags:</label>
+        <ul>
+          @foreach(var tag in Model["postTags"])
+          {
+              <li>@tag.GetName()</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
 <p>@Model["post"].GetText()</p>
+<hr>
 
 
 @foreach(var reply in @Model["replyList"])
 {
-  <h4>@reply.GetName()</h4>
-  <p>@reply.GetText()</p>
+  <div class="well">
+    <h4>@reply.GetName()</h4>
+    <p>@reply.GetText()</p>
+  </div>
 }
 
 -----

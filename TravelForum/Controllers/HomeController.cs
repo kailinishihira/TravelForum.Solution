@@ -197,6 +197,7 @@ namespace TravelForum.Controllers
 
       return View(model);
     }
+
     [HttpGet("/update-post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
     public ActionResult UpdatePostFromDetails(int postId, int regionId, int countryId, int cityId)
     {
@@ -221,6 +222,7 @@ namespace TravelForum.Controllers
       model.Add("allcities", allCities);
       model.Add("allcountries", allCountries);
       model.Add("allregions", allRegions);
+
 
       return View(model);
     }
@@ -277,13 +279,41 @@ namespace TravelForum.Controllers
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
+      model.Add("allTags", allTags);
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", region);
       model.Add("country", country);
       model.Add("city", city);
+      model.Add("postTags", getTags);
 
       return View(model);
+    }
+
+    [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/add-tags")]
+    public ActionResult PostNewTagsToPostDetail(int postId, int regionId, int countryId, int cityId)
+    {
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      int tagId = int.Parse(Request.Form["tags"]);
+      post.AddTag(tagId);
+      List<Tag> getTags = post.GetTags();
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      model.Add("allTags", allTags);
+      model.Add("post", post);
+      model.Add("replyList", replyList);
+      model.Add("region", region);
+      model.Add("country", country);
+      model.Add("city", city);
+      model.Add("postTags", getTags);
+
+      return View("PostDetails", model);
     }
 
     [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
@@ -297,15 +327,19 @@ namespace TravelForum.Controllers
 
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
+      List<Tag> getTags = post.GetTags();
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      model.Add("allTags", allTags);
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", region);
       model.Add("country", country);
       model.Add("city", city);
+      model.Add("postTags", getTags);
 
       return View("PostDetails", model);
     }
