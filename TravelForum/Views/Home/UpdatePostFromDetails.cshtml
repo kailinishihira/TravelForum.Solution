@@ -9,7 +9,7 @@
       <label for="name">Your name:</label>
       <input type="text" class="form-control" name="name" value='@Model["post"].GetName()'required>
       <label for="start-date">Travel start date:</label>
-      <input type="date" class="form-control" name="start-date" value='@Model["startDate"]' required>
+      <input type="date" class="form-control" name="start-date" value='@Model["post"].GetStartDate().ToString("yyyy-mm-dd")' required>
       <label for="end-date">Travel end date:</label>
       <input type="date" class="form-control" name="end-date" value='@Model["post"].GetEndDate()' required>
       <label for="text">Text:</label>

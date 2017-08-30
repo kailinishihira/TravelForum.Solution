@@ -1,0 +1,17 @@
+<body id="post-form">
+  <h1>Update your post:</h1>
+
+    <form action='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/reply/@Model["reply"].GetId()/updated' method="post" class="form-group">
+      <label for="name">Your name:</label>
+      <input type="text" class="form-control" name="name" value='@Model["reply"].GetName()'required>
+      <label for="text">Text:</label>
+      <input type="text" class="form-control" name="text" value='@Model["reply"].GetText()' required>
+
+      <div>
+        <button type="submit" class="btn btn-success">Save Reply Update</button></a>
+        <a href='/' class="btn btn-info">Cancel</a>
+      </div>
+    </form>
+
+
+</body>
