@@ -33,7 +33,7 @@
         <ul>
           @foreach(var tag in Model["postTags"])
           {
-              <li>@tag.GetName()</li>
+            <li>@tag.GetName() <a href='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/tag/@tag.GetId()/delete-tag'><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></li>
           }
         </ul>
       </div>

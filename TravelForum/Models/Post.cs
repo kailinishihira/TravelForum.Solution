@@ -381,5 +381,32 @@ namespace TravelForum.Models
         conn.Dispose();
       }
     }
+
+    public void DeleteTag(Tag newTag)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM posts_tags WHERE post_id = @postId AND tag_id = @tagId;";
+
+      MySqlParameter postId = new MySqlParameter();
+      postId.ParameterName = "@postId";
+      postId.Value = _id;
+      cmd.Parameters.Add(postId);
+
+      MySqlParameter tagId = new MySqlParameter();
+      tagId.ParameterName = "@tagId";
+      tagId.Value = newTag.GetId();
+      cmd.Parameters.Add(tagId);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
   }
 }

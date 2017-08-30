@@ -46,7 +46,7 @@ namespace TravelForum.Tests
 
       int expected = newPost.GetId();
       int actual = Post.GetAll()[0].GetId();
-      
+
       Assert.AreEqual(expected, actual);
     }
 
@@ -112,6 +112,24 @@ namespace TravelForum.Tests
       var actual = newPost.GetTags()[0].GetId();
 
       Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void DeleteTag_DeleteOneTagFromAPost_Tags()
+    {
+      Post newPost = new Post("Title", "name", default(DateTime), default(DateTime), "It was fun");
+      newPost.Save();
+      Tag newTag = new Tag("name");
+      newTag.Save();
+      newPost.AddTag(newTag.GetId());
+      Tag newTag2 = new Tag("general");
+      newTag2.Save();
+      newPost.AddTag(newTag2.GetId());
+      newPost.DeleteTag(newTag2);
+
+      List<Tag> actual = newPost.GetTags();
+      List<Tag> expected = new List<Tag>{newTag};
+      CollectionAssert.AreEqual(expected, actual);
     }
   }
 }
