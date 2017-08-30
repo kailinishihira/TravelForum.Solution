@@ -12,11 +12,8 @@ namespace TravelForum.Models
     private DateTime _startDate;
     private DateTime _endDate;
     private string _text;
-    private int _cityId;
-    private int _countryId;
-    private int _regionId;
 
-    public Post(string title, string name, DateTime startDate, DateTime endDate, string text, int cityId = 0, int countryId = 0, int regionId = 0, int id=0)
+    public Post(string title, string name, DateTime startDate, DateTime endDate, string text, int id=0)
     {
       _id= id;
       _title = title;
@@ -24,9 +21,6 @@ namespace TravelForum.Models
       _startDate = startDate;
       _endDate = endDate;
       _text = text;
-      _cityId = cityId;
-      _countryId = countryId;
-      _regionId = regionId;
     }
 
 
@@ -54,18 +48,18 @@ namespace TravelForum.Models
     {
       return _text;
     }
-    public int GetCityId()
-    {
-      return _cityId;
-    }
-    public int GetCountryId()
-    {
-      return _countryId;
-    }
-    public int GetRegionId()
-    {
-      return _regionId;
-    }
+    // public int GetCityId()
+    // {
+    //   return _cityId;
+    // }
+    // public int GetCountryId()
+    // {
+    //   return _countryId;
+    // }
+    // public int GetRegionId()
+    // {
+    //   return _regionId;
+    // }
 
     public override bool Equals(object otherPost)
     {
@@ -82,10 +76,7 @@ namespace TravelForum.Models
         bool startDateEquality = newPost.GetStartDate() == this._startDate;
         bool endDateEquality = newPost.GetEndDate() == this._endDate;
         bool textEquality = newPost.GetText() == this._text;
-        bool cityIdEquality = newPost.GetCityId() == this._cityId;
-        bool countryIdEquality = newPost.GetCountryId() == this._countryId;
-        bool regionIdEquality = newPost.GetRegionId() == this._regionId;
-        return (idEquality && titleEquality && nameEquality && startDateEquality && endDateEquality && textEquality && cityIdEquality && countryIdEquality && regionIdEquality);
+        return (idEquality && titleEquality && nameEquality && startDateEquality && endDateEquality && textEquality);
       }
     }
 
@@ -98,7 +89,7 @@ namespace TravelForum.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO posts (title, name, start_date, end_date, text, city_id, country_id, region_id) VALUES (@title, @name, @startDate, @endDate, @text, @cityId, @countryId, @regionId);";
+      cmd.CommandText = @"INSERT INTO posts (title, name, start_date, end_date, text) VALUES (@title, @name, @startDate, @endDate, @text);";
 
       MySqlParameter titleParam = new MySqlParameter();
       titleParam.ParameterName = "@title";
@@ -124,21 +115,6 @@ namespace TravelForum.Models
       textParam.ParameterName = "@text";
       textParam.Value = _text;
       cmd.Parameters.Add(textParam);
-
-      MySqlParameter cityIdParam = new MySqlParameter();
-      cityIdParam.ParameterName = "@cityId";
-      cityIdParam.Value = _cityId;
-      cmd.Parameters.Add(cityIdParam);
-
-      MySqlParameter countryIdParam = new MySqlParameter();
-      countryIdParam.ParameterName = "@countryId";
-      countryIdParam.Value = _countryId;
-      cmd.Parameters.Add(countryIdParam);
-
-      MySqlParameter regionIdParam = new MySqlParameter();
-      regionIdParam.ParameterName = "@regionId";
-      regionIdParam.Value = _regionId;
-      cmd.Parameters.Add(regionIdParam);
 
       cmd.ExecuteNonQuery();
       _id = (int) cmd.LastInsertedId;
@@ -168,7 +144,7 @@ namespace TravelForum.Models
         int cityId = rdr.GetInt32(6);
         int countryId = rdr.GetInt32(7);
         int regionId = rdr.GetInt32(8);
-        Post newPost = new Post(title, name, startDate, endDate, text, cityId, countryId, regionId, id);
+        Post newPost = new Post(title, name, startDate, endDate, text, id);
         allPosts.Add(newPost);
       }
       conn.Close();
@@ -188,9 +164,6 @@ namespace TravelForum.Models
       DateTime startDate = default(DateTime);
       DateTime endDate = default(DateTime);
       string text = "";
-      int cityId = 0;
-      int countryId = 0;
-      int regionId = 0;
 
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -211,10 +184,7 @@ namespace TravelForum.Models
         startDate = rdr.GetDateTime(3);
         endDate = rdr.GetDateTime(4);
         text = rdr.GetString(5);
-        cityId = rdr.GetInt32(6);
-        countryId = rdr.GetInt32(7);
-        regionId = rdr.GetInt32(8);
-        foundPost = new Post(title, name, startDate, endDate, text, cityId, countryId, regionId, id);
+        foundPost = new Post(title, name, startDate, endDate, text, id);
       }
       conn.Close();
       if (conn != null)
@@ -269,21 +239,6 @@ namespace TravelForum.Models
       textParam.Value = text;
       cmd.Parameters.Add(textParam);
 
-      MySqlParameter cityIdParam = new MySqlParameter();
-      cityIdParam.ParameterName = "@cityId";
-      cityIdParam.Value = cityId;
-      cmd.Parameters.Add(cityIdParam);
-
-      MySqlParameter countryIdParam = new MySqlParameter();
-      countryIdParam.ParameterName = "@countryId";
-      countryIdParam.Value = countryId;
-      cmd.Parameters.Add(countryIdParam);
-
-      MySqlParameter regionIdParam = new MySqlParameter();
-      regionIdParam.ParameterName = "@regionId";
-      regionIdParam.Value = regionId;
-      cmd.Parameters.Add(regionIdParam);
-
       MySqlParameter idParam = new MySqlParameter();
       idParam.ParameterName = "@id";
       idParam.Value = _id;
@@ -297,9 +252,6 @@ namespace TravelForum.Models
       {
         conn.Dispose();
       }
-
-
-
     }
 
     public void AddTag(int tagId)
@@ -360,6 +312,67 @@ namespace TravelForum.Models
         conn.Dispose();
       }
       return allTags;
+    }
+
+    public void AddCity(int cityId)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO cities_posts(city_id, post_id) VALUES (@cityId, @postId);";
+
+      MySqlParameter cityIdParam = new MySqlParameter();
+      cityIdParam.ParameterName = "@cityId";
+      cityIdParam.Value = cityId;
+      cmd.Parameters.Add(cityIdParam);
+
+      MySqlParameter postIdParam = new MySqlParameter();
+      postIdParam.ParameterName = "@postId";
+      postIdParam.Value = this._id;
+      cmd.Parameters.Add(postIdParam);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public List<City> GetCities()
+    {
+      List<City> cities = new List<City>{};
+
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT cities.* FROM posts JOIN cities_posts ON (posts.id = cities_posts.city_id) JOIN cities ON (cities.id = cities_posts.city_id WHERE posts.id = @postId);";
+
+      MySqlParameter postIdParam = new MySqlParameter();
+      postIdParam.ParameterName = "@postId";
+      postIdParam.Value = _id;
+      cmd.Parameters.Add(postIdParam);
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        int countryId = rdr.GetInt32(2);
+
+        City newCity = new City(name, countryId, id);
+        cities.Add(newCity);
+      }
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return cities;
     }
 
     public void Delete()
