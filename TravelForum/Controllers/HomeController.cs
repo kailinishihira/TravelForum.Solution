@@ -181,12 +181,66 @@ namespace TravelForum.Controllers
       City city = City.Find(postToUpdate.GetCityId());
       Country country = Country.Find(postToUpdate.GetCountryId());
       Region region = Region.Find(postToUpdate.GetRegionId());
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      model.Add("city", city);
+      model.Add("country", country);
+      model.Add("region", region);
+      model.Add("post",  postToUpdate);
+      model.Add("replyList", replyList);
+
+      return View(model);
+    }
+    [HttpGet("/update-post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
+    public ActionResult UpdatePostFromDetails(int postId)
+    {
+      Post postToUpdate = Post.Find(postId);
+
+      var model = new Dictionary<string,object>{};
+      City city = City.Find(postToUpdate.GetCityId());
+      Country country = Country.Find(postToUpdate.GetCountryId());
+      Region region = Region.Find(postToUpdate.GetRegionId());
       model.Add("city", city);
       model.Add("country", country);
       model.Add("region", region);
       model.Add("post",  postToUpdate);
 
       return View(model);
+    }
+
+    [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/updated")]
+    public ActionResult FormUpdated(int postId, int regionId, int countryId, int cityId)
+    {
+      Post postToUpdate = Post.Find(postId);
+      string title = Request.Form["title"];
+      string name = Request.Form["name"];
+      DateTime start = DateTime.Parse(Request.Form["start-date"]);
+      DateTime end = DateTime.Parse(Request.Form["end-date"]);
+      string text = Request.Form["text"];
+      int cityIdForm = int.Parse(Request.Form["city"]);
+      int countryIdForm = int.Parse(Request.Form["country"]);
+      int regionIdForm = int.Parse(Request.Form["region"]);
+      postToUpdate.Update(title, name, start, end, text, cityIdForm, countryIdForm, regionIdForm);
+
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      model.Add("post", post);
+      model.Add("replyList", replyList);
+      model.Add("region", region);
+      model.Add("country", country);
+      model.Add("city", city);
+
+      // City city = City.Find(cityId);
+      // Country country = Country.Find(countryId);
+      // Region region = Region.Find(regionId);
+      // Post newPost = new Post(title, name, start, end, text, cityId, countryId, regionId);
+      // newPost.Save();
+
+
+      return View("PostDetails", model);
     }
 
     [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
@@ -231,5 +285,12 @@ namespace TravelForum.Controllers
       return View("PostDetails", model);
     }
 
+    [HttpGet("/delete/{id}")]
+    public ActionResult DeletePost(int id)
+    {
+      Post postToDelete = Post.Find(id);
+      postToDelete.Delete();
+      return View(postToDelete);
+    }
   }
 }
