@@ -18,12 +18,10 @@
       <label for="region">Region:</label>
       <select class="selectpicker" name="region">
         <option selected value='@Model["region"].GetId()'> @Model["region"].GetName()</option>
-
         @foreach(var region in @Model["allregions"])
         {
         <option value='@region.GetId()'>@region.GetName()</option>
-
-       }
+        }
       </select>
 
       <label for="country">Country:</label>

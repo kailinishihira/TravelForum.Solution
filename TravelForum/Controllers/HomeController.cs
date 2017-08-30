@@ -210,6 +210,7 @@ namespace TravelForum.Controllers
       List<City> allCities = City.GetAll();
       List<Country> allCountries = Country.GetAll();
       List<Region> allRegions = Region.GetAll();
+      List<Tag> allTags = Tag.GetAll();
 
       Console.WriteLine(post.GetStartDate());
       Console.WriteLine(post.GetEndDate());
@@ -222,6 +223,8 @@ namespace TravelForum.Controllers
       model.Add("allcities", allCities);
       model.Add("allcountries", allCountries);
       model.Add("allregions", allRegions);
+      model.Add("allTags", allTags);
+
 
 
       return View(model);
@@ -239,6 +242,9 @@ namespace TravelForum.Controllers
       int cityIdForm = int.Parse(Request.Form["city"]);
       int countryIdForm = int.Parse(Request.Form["country"]);
       int regionIdForm = int.Parse(Request.Form["region"]);
+      int tagId = int.Parse(Request.Form["tag"]);
+      postToUpdate.AddTag(tagId);
+      List<Tag> getTags = postToUpdate.GetTags();
 
 
 
@@ -248,17 +254,17 @@ namespace TravelForum.Controllers
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      List<Tag> allTags = Tag.GetAll();
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
       model.Add("post", post);
-      Console.WriteLine(City.Find(post.GetCityId()).GetName());
-      Console.WriteLine(Country.Find(post.GetCountryId()).GetName());
-      Console.WriteLine(Region.Find(post.GetRegionId()).GetName());
       model.Add("replyList", replyList);
       model.Add("region", Region.Find(post.GetRegionId()));
       model.Add("country", Country.Find(post.GetCountryId()));
       model.Add("city", City.Find(post.GetCityId()));
+      model.Add("allTags", allTags);
+      model.Add("postTags", getTags);
 
       // City city = City.Find(cityId);
       // Country country = Country.Find(countryId);
