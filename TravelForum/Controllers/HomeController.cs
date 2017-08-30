@@ -171,6 +171,7 @@ namespace TravelForum.Controllers
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
       List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", region);
