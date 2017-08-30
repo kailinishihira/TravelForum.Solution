@@ -41,6 +41,14 @@
           <option value="@city.GetId()">@city.GetName()</option>
       }
     </select>
+
+    <label for="tag">Tag:</label>
+    <select class="selectpicker" name="tag">
+      @foreach(var tag in Model["tags"])
+      {
+          <option value="@tag.GetId()">@tag.GetName()</option>
+      }
+    </select>
     <button type="submit" class="btn btn-success">Confirm Post</button>
   </form>
 </body>
