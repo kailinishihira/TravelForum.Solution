@@ -1,6 +1,3 @@
-@{
-  Layout = "_Layout";
-}
 
 
 <h3>@Model["post"].GetTitle()</h3>
@@ -9,10 +6,15 @@
 <h4>Region: @Model["region"].GetName()</h4>
 <h4>Country: @Model["country"].GetName()</h4>
 <h4>City: @Model["city"].GetName()</h4>
-----
+
+<div class="form-group">
+  <a href='/update-post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()' class="btn btn-info">Update post</a>
+  <a href='/delete/@Model["post"].GetId()' class="btn btn-danger">Delete post</a>
+</div>
+
 <p>@Model["post"].GetText()</p>
 
-------
+
 @foreach(var reply in @Model["replyList"])
 {
   <h4>@reply.GetName()</h4>
