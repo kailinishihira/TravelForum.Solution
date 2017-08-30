@@ -57,7 +57,15 @@
     {
       <h4><a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">@post.GetTitle()</a></h4>
       <p>@post.GetName() @post.GetStartDate().ToString("MM/dd/yyyy")</p>
-      <p>@post.GetText().Substring(0,200)...<a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
+      @if(@post.GetText().Length > 150)
+      {
+        <p>@post.GetText().Substring(0,150)...<a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
+      }
+      else
+      {
+        <p>@post.GetText() <a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
+      }
+
     }
   </div>
 
