@@ -6,9 +6,9 @@
   <h4>Name:</h4>
   <p>@Model["post"].GetName()</p>
   <h4>Start Date:</h4>
-  <p>@Model["post"].GetStartDate()</p>
+  <p>@Model["post"].GetStartDate().ToString("MM/dd/yyyy")</p>
   <h4>End Date:</h4>
-  <p>@Model["post"].GetEndDate()</p>
+  <p>@Model["post"].GetEndDate().ToString("MM/dd/yyyy")</p>
   <h4>Text:</h4>
   <p>@Model["post"].GetText()</p>
   <h4>Region:</h4>
@@ -17,6 +17,11 @@
   <p>@Model["country"].GetName()</p>
   <h4>City:</h4>
   <p>@Model["city"].GetName()</p>
+  <h4>Tag:</h4>
+  @foreach (var tag in @Model["tags"])
+  {
+    <p>@tag.GetName()</p>
+  }
 
   <div>
     <a href='/post/@Model["post"].GetId()/region/@Model.["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()/view-post'> <button class="btn btn-info">View Post</button></a>
