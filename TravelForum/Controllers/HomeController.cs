@@ -166,15 +166,19 @@ namespace TravelForum.Controllers
     {
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
+      List<Tag> getTags = post.GetTags();
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
       Region region = Region.Find(regionId);
       Country country = Country.Find(countryId);
       City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      model.Add("allTags", allTags);
       model.Add("post", post);
       model.Add("replyList", replyList);
       model.Add("region", region);
       model.Add("country", country);
       model.Add("city", city);
+      model.Add("postTags", getTags);
 
       return View("PostDetails", model);
     }
@@ -188,12 +192,21 @@ namespace TravelForum.Controllers
       City city = City.Find(postToUpdate.GetCityId());
       Country country = Country.Find(postToUpdate.GetCountryId());
       Region region = Region.Find(postToUpdate.GetRegionId());
+      List<City> allCities = City.GetAll();
+      List<Country> allCountries = Country.GetAll();
+      List<Region> allRegions = Region.GetAll();
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      List<Tag> allTags = Tag.GetAll();
+
       model.Add("city", city);
       model.Add("country", country);
       model.Add("region", region);
+      model.Add("allcities", allCities);
+      model.Add("allcountries", allCountries);
+      model.Add("allregions", allRegions);
       model.Add("post",  postToUpdate);
       model.Add("replyList", replyList);
+      model.Add("allTags", allTags);
 
       return View(model);
     }
@@ -212,9 +225,6 @@ namespace TravelForum.Controllers
       List<Region> allRegions = Region.GetAll();
       List<Tag> allTags = Tag.GetAll();
 
-      Console.WriteLine(post.GetStartDate());
-      Console.WriteLine(post.GetEndDate());
-
       model.Add("startDate", post.GetStartDate());
       model.Add("post", post);
       model.Add("region", region);
@@ -224,8 +234,6 @@ namespace TravelForum.Controllers
       model.Add("allcountries", allCountries);
       model.Add("allregions", allRegions);
       model.Add("allTags", allTags);
-
-
 
       return View(model);
     }
