@@ -321,6 +321,34 @@ namespace TravelForum.Controllers
       return View("PostDetails", model);
     }
 
+    [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/tag/{tagId}/delete-tag")]
+    public ActionResult DeleteTag(int postId, int regionId, int countryId, int cityId, int tagId)
+    {
+      var model = new Dictionary<string, object> {};
+      Post post = Post.Find(postId);
+      List<Reply> replyList = Reply.GetRepliesByPostId(postId);
+      Region region = Region.Find(regionId);
+      Country country = Country.Find(countryId);
+      City city = City.Find(cityId);
+      List<Tag> allTags = Tag.GetAll();
+      List<Tag> getTags = post.GetTags();
+      Tag thisTag = Tag.Find(tagId);
+      post.DeleteTag(thisTag);
+      model.Add("allTags", allTags);
+      model.Add("post", post);
+      model.Add("replyList", replyList);
+      model.Add("region", region);
+      model.Add("country", country);
+      model.Add("city", city);
+      model.Add("postTags", getTags);
+
+      return View("PostDetails", model);
+
+    }
+
+
+
+
     [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
     public ActionResult PostReplyToPostDetails(int postId, int regionId, int countryId, int cityId)
     {
