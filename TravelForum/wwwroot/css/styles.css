@@ -46,6 +46,18 @@
   font-size: 18px;
 }
 
+.overlay-desc h1{
+  background: rgba(0,0,0,0);
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 200px;
+  letter-spacing: 10px;
+}
+
 #nav {
   background-color: #123740;
   margin: 0;
