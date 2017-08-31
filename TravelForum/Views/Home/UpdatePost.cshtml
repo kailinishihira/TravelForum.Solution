@@ -1,64 +1,100 @@
-<body id="post-form">
-  <h1>Update your post:</h1>
 
-    <form action='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/updated' method="post" class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" name="title" value='@Model["post"].GetTitle()' required>
-      <label for="name">Your name:</label>
-      <input type="text" class="form-control" name="name" value='@Model["post"].GetName()'required>
-      <label for="start-date">Travel start date:</label>
-      <input type="date" class="form-control" name="start-date" value='@Model["post"].GetStartDate()' required>
-      <label for="end-date">Travel end date:</label>
-      <input type="date" class="form-control" name="end-date" value='@Model["post"].GetEndDate()' required>
-      <label for="text">Text:</label>
-      <input type="text" class="form-control" name="text" value='@Model["post"].GetText()' required>
+<div class="container">
+  <body id="post-form">
+      <form class="form-horizontal" action='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/updated' method="post" class="form-group">
+    <legend><h1>Update your post:</h1></legend>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="title">Title:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="title" value='@Model["post"].GetTitle()' required>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="name">Your name:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="name" value='@Model["post"].GetName()'required>
+          </div>
+        </div>
 
-      <label for="region">Region:</label>
-      <select class="selectpicker" name="region">
-        <option selected value='@Model["region"].GetId()'> @Model["region"].GetName()</option>
-        @foreach(var region in @Model["allregions"])
-        {
-        <option value='@region.GetId()'>@region.GetName()</option>
-        }
-      </select>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="start-date">Travel start date:</label>
+          <div class="col-lg-10">
+            <input type="date" class="form-control" name="start-date" value='@Model["post"].GetStartDate()'>
+          </div>
+        </div>
 
-      <label for="country">Country:</label>
-      <select class="selectpicker" name="country">
-        <option selected value='@Model["country"].GetId()'> @Model["country"].GetName()</option>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="end-date">Travel end date:</label>
+          <div class="col-lg-10">
+            <input type="date" class="form-control" name="end-date" value='@Model["post"].GetEndDate()'>
+          </div>
+        </div>
 
-        @foreach(var country in @Model["allcountries"])
-        {
-        <option value='@country.GetId()'>@country.GetName()</option>
-
-       }
-      </select>
-
-      <label for="city">City:</label>
-
-      <select class="selectpicker" name="city" type="text" id="city">
-        <option selected value='@Model["city"].GetId()'> @Model["city"].GetName()</option>
-
-        @foreach(var city in @Model["allcities"])
-        {
-        <option value='@city.GetId()'>@city.GetName()</option>
-
-       }
-      </select>
-      <div>
-
-      <label for="tag">Tag:</label>
-      <select class="selectpicker" name="tag">
-        @foreach(var tag in Model["allTags"])
-        {
-            <option value="@tag.GetId()">@tag.GetName()</option>
-        }
-      </select>
-      <div>
-        <button type="submit" class="btn btn-success">Save Update</button>
-        <a href='/'><button class="btn btn-info"> Cancel</button></a>
-      </div>
-    </form>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="text">Text:</label>
+          <div class="col-lg-10">
+            <textarea rows="5" class="form-control" name="text" value='@Model["post"].GetText()' required></textarea>
+          </div>
+        </div>
 
 
-</body>
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="region">Region:</label>
+          <div class="col-lg-3">
+            <select class="selectpicker form-control" name="region">
+              <option selected value='@Model["region"].GetId()'> @Model["region"].GetName()</option>
+              @foreach(var region in @Model["allregions"])
+              {
+                <option value="@region.GetId()">@region.GetName()</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="country">Country:</label>
+          <div class="col-lg-3">
+            <select class="selectpicker form-control" name="country">
+              <option selected value='@Model["country"].GetId()'> @Model["country"].GetName()</option>
+              @foreach(var country in @Model["allcountries"])
+              {
+                <option value="@country.GetId()">@country.GetName()</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="city">City:</label>
+          <div class="col-lg-3">
+            <select class="selectpicker form-control" name="city">
+              <option selected value='@Model["city"].GetId()'> @Model["city"].GetName()</option>
+              @foreach(var city in @Model["allcities"])
+              {
+                <option value="@city.GetId()">@city.GetName()</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="tag">Tag:</label>
+          <div class="col-lg-3">
+            <select class="selectpicker form-control" name="tag">
+              @foreach(var tag in Model["allTags"])
+              {
+                <option value="@tag.GetId()">@tag.GetName()</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-success">Save Update</button>
+            <a href="/" class="btn btn-info" > Cancel</a>
+          </div>
+        </div>
+      </form>
+  </body>
+</div>
