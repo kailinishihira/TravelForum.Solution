@@ -39,13 +39,15 @@
 .video-container video.fillWidth {
     width: 100%;
 }
+#index {
+  background-color: #E5E5E5;
+}
 .index-view {
   margin-left: 5%;
   margin-right: 5%;
   padding-bottom: 20%;
   font-size: 18px;
 }
-
 .overlay-desc h1{
   background: rgba(0,0,0,0);
   position: absolute;
@@ -57,20 +59,20 @@
   font-size: 200px;
   letter-spacing: 10px;
 }
-
 #nav {
   background-color: #123740;
+  border: none;
+  border-radius: 0;
   margin: 0;
+  padding: .65%;
 }
 
 .navbar-travel-forum {
   text-align: center;
   font-size: 30px;
-  margin-left: 1000px;
+  margin-left: 1150px;
   letter-spacing: 10px;
   color: #549aab;
-  padding-top: 3%;
-  padding-bottom: 3%;
 }
 
 .navbar-travel-forum:hover {
@@ -111,6 +113,18 @@
 .index-labels {
   color: #549aab;
   letter-spacing: 2px;
+}
+.index-about-btn {
+  display: block;
+  margin: 3% 40% 5% 40%;
+  padding: 20px 40px 20px 40px;
+  font-size: 30px;
+  letter-spacing: 5px;
+}
+.post-type {
+  font-size: 50px;
+  text-align: center;
+  letter-spacing: 3px;
 }
 #about-us {
   background-image: url("/img/melissa-313558.jpg");
