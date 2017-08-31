@@ -1,74 +1,100 @@
-<h1>Travel Forum</h1>
+<div class="homepage-hero-module">
+  <div class="video-container">
+      <div class="filter"></div>
+      <video autoplay loop class="fillWidth">
+          <source src="/img/Indian-Pedestrian/MP4/Indian-Pedestrian.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+          <source src="/img/Indian-Pedestrian/WEBM/Indian-Pedestrian.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+      </video>
+      <div class="poster hidden">
+          <img src="/img/Indian-Pedestrian/SnapShots/Indian-Pedestrian.jpg" alt="">
+      </div>
+    </div>
+</div>
 
-<div class="row">
-  <div class="col-md-4">
-    <h3>Start exploring:</h3>
+<div class="index-view">
+  <div class="row index-row-1">
 
-    <form action='/posts/by-region' method='post'>
-      <label for='region-id'>Select a Region:</label>
-      <select id='region-id' name='region-id' type='text'>
-        @foreach (var region in @Model["regions"])
-        {
-          <option value='@region.GetId()'>@region.GetName()</option>
-        }
-      </select>
-      <button type='submit' class='btn btn-default'>Read</button>
-    </form>
+    <div class="col-md-3">
+      <h3>Start exploring:</h3>
+    </div>
 
-    <form action='/posts/by-country' method='post'>
-      <label for='country-id'>Select a Country:</label>
-      <select id='country-id' name='country-id' type='text'>
-        @foreach (var country in @Model["countries"])
-        {
-          <option value='@country.GetId()'>@country.GetName()</option>
-        }
-      </select>
-      <button type='submit' class='btn btn-default'>Read</button>
-    </form>
+    <div class="col-md-3">
+      <form action='/posts/by-region' method='post'>
+        <label for='region-id' class="index-labels">Select a Region:</label>
+        <select id='region-id' name='region-id' type='text'>
+          @foreach (var region in @Model["regions"])
+          {
+            <option value='@region.GetId()'>@region.GetName()</option>
+          }
+        </select>
+        <button type='submit' class='btn btn-default'>Read</button>
+      </form>
+    </div>
 
-    <form action='/posts/by-city' method='post'>
-      <label for='city-id'>Select a City:</label>
-      <select id='city-id' name='city-id' type='text'>
-        @foreach (var city in @Model["cities"])
-        {
-          <option value='@city.GetId()'>@city.GetName()</option>
-        }
-      </select>
-      <button type='submit' class='btn btn-default'>Read</button>
-    </form>
+    <div class="col-md-3">
+      <form action='/posts/by-country' method='post'>
+        <label for='country-id' class="index-labels">Select a Country:</label>
+        <select id='country-id' name='country-id' type='text'>
+          @foreach (var country in @Model["countries"])
+          {
+            <option value='@country.GetId()'>@country.GetName()</option>
+          }
+        </select>
+        <button type='submit' class='btn btn-default'>Read</button>
+      </form>
+    </div>
 
-    <form action='/posts/by-tag' method='post'>
-      <label for='tag-id'>Select a Tag:</label>
-      <select id='tag-id' name='tag-id' type='text'>
-        @foreach (var tag in @Model["tags"])
-        {
-          <option value='@tag.GetId()'>@tag.GetName()</option>
-        }
-      </select>
-      <button type='submit' class='btn btn-default'>Read</button>
-    </form>
-
-    <a href="/"><button class="btn btn-default">All Posts</button></a>
+    <div class="col-md-3">
+      <form action='/posts/by-city' method='post'>
+        <label for='city-id' class="index-labels">Select a City:</label>
+        <select id='city-id' name='city-id' type='text'>
+          @foreach (var city in @Model["cities"])
+          {
+            <option value='@city.GetId()'>@city.GetName()</option>
+          }
+        </select>
+        <button type='submit' class='btn btn-default'>Read</button>
+      </form>
+    </div>
   </div>
 
-  <div class="col-md-5">
-    <h3>@Model["searchby"].GetName() Posts <span class="badge">@Model["posts"].Count</span></h3>
-    @foreach (var post in @Model["posts"])
-    {
-      <h4><a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">@post.GetTitle()</a></h4>
-      <p>@post.GetName() @post.GetStartDate().ToString("MM/dd/yyyy")</p>
-      @if(@post.GetText().Length > 150)
-      {
-        <p>@post.GetText().Substring(0,150)...<a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
-      }
-      else
-      {
-        <p>@post.GetText() <a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
-      }
-    }
-  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <a href="/"><button class="btn btn-default all-posts-button">All Posts</button></a>
+      <br>
+      <h4>Select a Tag:</h4>
+      @foreach (var tag in @Model["tags"])
 
-  <div class="col-md-3">
-    <a href="/post/form"><button class="btn btn-default">Add a new post</button></a>
+      {
+        <p><a href='/posts/by-tag/@tag.GetId()' class="tag-links">@tag.GetName() <span class="badge">@tag.GetPosts().Count</span> </a></p>
+      }
+    </div>
+
+    <div class="col-md-8">
+      <h3>@Model["searchby"].GetName() Posts</h3>
+      @foreach (var post in @Model["posts"])
+      {
+
+        <div class="well">
+          <h4><a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">@post.GetTitle()</a></h4>
+          <p>@post.GetName() @post.GetStartDate().ToString("MM/dd/yyyy")</p>
+          @if(@post.GetText().Length > 150)
+          {
+            <p>@post.GetText().Substring(0,150)...<a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
+          }
+          else
+          {
+            <p>@post.GetText() <a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
+          }
+        </div>
+
+      }
+    </div>
+
+    <div class="col-md-2">
+      <a href="/post/form"><button class="btn btn-default new-post-button">Add a new post</button></a>
+    </div>
   </div>
 </div>
+
+<a href="/about-us" class="btn btn-lg btn-default">About Us</a>
