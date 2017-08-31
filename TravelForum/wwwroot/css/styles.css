@@ -114,6 +114,11 @@
   color: #549aab;
   letter-spacing: 2px;
 }
+
+
+
+
+
 .index-about-btn {
   display: block;
   margin: 3% 40% 5% 40%;
@@ -126,6 +131,7 @@
   text-align: center;
   letter-spacing: 3px;
 }
+
 #about-us {
   background-image: url("/img/melissa-313558.jpg");
   background-position: cover;
@@ -219,6 +225,54 @@ select {
 
 .button-post-form {
   text-align: center;
+}
+
+.summary-row {
+  text-align: center;
+}
+
+.summary-row p{
+  font-size: 24px;
+}
+
+.summary-row h4{
+  font-size: 32px;
+}
+
+.post-summary-text p{
+  font-size: 16px;
+  margin-top:2%;
+}
+
+.summary-buttons {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.post-summary-head {
+  text-align: center;
+}
+
+.tag-well {
+  margin-top: 4%;
+  text-align: center;
+}
+
+.post-details-text h4{
+  font-size: 24px;
+  margin-top: 4%;
+}
+
+.post-details-text h3{
+  font-size: 36px;
+}
+
+.post-details-body-text p{
+  font-size: 16px;
+}
+
+.reply-button {
+  margin-top:3%;
 }
 
 footer p{

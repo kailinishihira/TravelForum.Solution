@@ -148,7 +148,6 @@ namespace TravelForum.Controllers
       DateTime end = DateTime.Parse(Request.Form["end-date"]);
       string text = Request.Form["text"];
       int cityId = int.Parse(Request.Form["city"]);
-      Console.WriteLine("id================" + cityId);
       int countryId = int.Parse(Request.Form["country"]);
       int regionId = int.Parse(Request.Form["region"]);
       int tagId = int.Parse(Request.Form["tag"]);

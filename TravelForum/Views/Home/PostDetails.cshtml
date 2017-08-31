@@ -1,13 +1,12 @@
+<div class="container">
 <div class="form-group">
-  <a href="/" class="btn btn-default">Home</a>
-  <a href='/update-post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()' class="btn btn-info">Update post</a>
-  <a href='/delete/@Model["post"].GetId()' class="btn btn-danger">Delete post</a>
+  <a href="/" class="btn btn-default btn-lg">Home</a>
+  <a href='/update-post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()' class="btn btn-info btn-lg">Update post</a>
+  <a href='/delete/@Model["post"].GetId()' class="btn btn-danger btn-lg">Delete post</a>
 </div>
-
-<h3>@Model["post"].GetTitle()</h3>
-
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-6 post-details-text">
+    <h3>@Model["post"].GetTitle()</h3>
     <h4>By: @Model["post"].GetName()</h4>
     <h4>Trip Duration: @Model["post"].GetStartDate().ToString("MM/dd/yyyy") - @Model["post"].GetEndDate().ToString("MM/dd/yyyy")</h4>
     <h4>Region: @Model["region"].GetName()</h4>
@@ -15,10 +14,10 @@
     <h4>City: @Model["city"].GetName()</h4>
   </div>
 
-  <div class="col-md-4">
-    <div class="well">
+  <div class="col-md-6">
+    <div class="well tag-well">
       <form action='/post/@Model["post"].GetId()/region/@Model["region"].GetId()/country/@Model["country"].GetId()/city/@Model["city"].GetId()/add-tags' method="post">
-        <label for="tags">Add tags:</label>
+        <h4>Add tags:</h4>
           <select class="selectpicker" name="tags">
             @foreach(var tag in Model["allTags"])
             {
@@ -27,9 +26,10 @@
           </select>
         <button type="submit" class="btn btn-default">Add tag</button>
       </form>
-
+    </div>
+    <div class="well tag-well">
       <div class="postTags">
-        <label for="postTags">Tags:</label>
+        <h4>Tags:</h4
         <ul>
           @foreach(var tag in Model["postTags"])
           {
@@ -39,11 +39,16 @@
       </div>
     </div>
   </div>
+
 </div>
 
+<div class="row">
+  <div class="col-md-12 post-details-body-text">
 <hr>
 <p>@Model["post"].GetText()</p>
 <hr>
+  </div>
+</div>
 
 
 @foreach(var reply in @Model["replyList"])
@@ -61,6 +66,7 @@
   <label for="reply">Add a reply:</label>
   <input type="text" placeholder="Your Name" name="reply-name">
   <textarea class="form-control" rows="5" name="reply-text"></textarea>
-  <button type="submit" class= "btn btn-info">Add reply</button>
+  <button type="submit" class= "btn btn-info btn-lg reply-button">Add reply</button>
 </form>
+</div>
 </div>
