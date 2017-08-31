@@ -16,10 +16,13 @@
 <body>
   <nav id="nav" class="navbar navbar-default">
     <div class="navbar-header">
-      <a class="navbar-travel-forum" href="/"><img src="img/world2.png" alt="world icon" class="world"> Travel Forum</a>
+      <a class="navbar-travel-forum" href="/">Travilo</a>
     </div>
    </nav>
     @RenderBody()
+     <footer>
+        <p>&copy; @DateTime.Now.Year - Travilo | <a href="/about-us" >About us</a></p>
+     </footer>
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
