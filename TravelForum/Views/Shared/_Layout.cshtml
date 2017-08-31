@@ -7,13 +7,14 @@
   href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   <link rel="stylesheet" href="/css/styles.css">
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <script src="/js/scripts.js"></script>
 </head>
 <body>
-  <ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link" href="/">Travel Forum</a>
-  </li>
-</ul>
+  <nav id="nav" class="navbar navbar-default">
+    <div class="navbar-header">
+      <a class="navbar-travel-forum" href="/"><img src="img/world2.png" alt="world icon" class="world"> Travel Forum</a>
+    </div>
+   </nav>
     @RenderBody()
 </body>
 </html>

@@ -1,3 +1,107 @@
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}
+
+.index-view {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 20%;
+  font-size: 18px;
+}
+
+#nav {
+  background-color: #123740;
+  margin: 0;
+}
+
+.navbar-travel-forum {
+  text-align: center;
+  font-size: 30px;
+  margin-left: 1000px;
+  letter-spacing: 10px;
+  color: #549aab;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.navbar-travel-forum:hover {
+  text-decoration: none;
+  color: #b0d7e1;
+}
+
+.world {
+  width: 2%;
+}
+
+.index-row-1 {
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+
+.new-post-button {
+  font-size: 20px;
+  padding-left: 20px 30px 20px 30px;
+  float: right;
+}
+
+.all-posts-button {
+  font-size: 18px;
+  padding: 10px 15px 10px 15px;
+  margin-bottom: 1%;
+}
+
+.tag-links {
+  color: #123740;
+}
+
+.tag-links:hover {
+  color: #549aab;
+  text-decoration: none;
+}
+
+.index-labels {
+  color: #549aab;
+  letter-spacing: 2px;
+}
+
 #about-us {
   background-image: url("/img/melissa-313558.jpg");
   background-position: cover;
@@ -20,7 +124,6 @@
 }
 .p-about {
   font-size: 20px;
-  /*margin-bottom: 40px;*/
   margin: 3% 10% 3% 10%;
 }
 .jiuzhai-img, .group-img {
@@ -56,4 +159,4 @@
   font-size: 30px;
   letter-spacing: 5px;
   border: solid 4px #123740;
-}
+
