@@ -52,7 +52,7 @@
   </div>
 
   <div class="col-md-5">
-    <h3>@Model["searchby"].GetName() Posts</h3>
+    <h3>@Model["searchby"].GetName() Posts <span class="badge">@Model["posts"].Count</span></h3>
     @foreach (var post in @Model["posts"])
     {
       <h4><a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">@post.GetTitle()</a></h4>
@@ -65,7 +65,6 @@
       {
         <p>@post.GetText() <a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">Click here to read</p>
       }
-
     }
   </div>
 

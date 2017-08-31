@@ -240,6 +240,7 @@ namespace TravelForum.Controllers
     [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/updated")]
     public ActionResult FormUpdated(int postId, int regionId, int countryId, int cityId)
     {
+
       Post postToUpdate = Post.Find(postId);
       string title = Request.Form["title"];
       string name = Request.Form["name"];
@@ -276,6 +277,7 @@ namespace TravelForum.Controllers
     [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
     public ActionResult PostDetails(int postId, int regionId, int countryId, int cityId)
     {
+
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);
