@@ -92,10 +92,10 @@ namespace TravelForum.Controllers
       return View("Index", model);
     }
 
-    [HttpPost("/posts/by-tag")]
-    public ActionResult TagPosts()
+    [HttpGet("/posts/by-tag/{id}")]
+    public ActionResult TagPosts(int id)
     {
-      Tag thisTag = Tag.Find(Int32.Parse(Request.Form["tag-id"]));
+      Tag thisTag = Tag.Find(id);
       List<Post> tagPosts = thisTag.GetPosts();
       List<Region> allRegions = Region.GetAll();
       List<Country> allCountries = Country.GetAll();
