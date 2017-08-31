@@ -144,11 +144,12 @@
 }
 .about-well {
   background: #fcfaea;
-  margin-bottom: 0;
+  margin: 0;
 }
 .p-about {
   font-size: 20px;
   margin: 3% 10% 3% 10%;
+  text-align: center;
 }
 .jiuzhai-img, .group-img {
   width: 50%;
@@ -218,4 +219,15 @@ select {
 
 .button-post-form {
   text-align: center;
+}
+
+footer p{
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  background-color: #123740;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: .65%;
 }
