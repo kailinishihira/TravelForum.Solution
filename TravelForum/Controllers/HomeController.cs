@@ -148,6 +148,7 @@ namespace TravelForum.Controllers
       DateTime end = DateTime.Parse(Request.Form["end-date"]);
       string text = Request.Form["text"];
       int cityId = int.Parse(Request.Form["city"]);
+      Console.WriteLine("id================" + cityId);
       int countryId = int.Parse(Request.Form["country"]);
       int regionId = int.Parse(Request.Form["region"]);
       int tagId = int.Parse(Request.Form["tag"]);
@@ -248,6 +249,7 @@ namespace TravelForum.Controllers
     [HttpPost("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}/updated")]
     public ActionResult FormUpdated(int postId, int regionId, int countryId, int cityId)
     {
+
       Post postToUpdate = Post.Find(postId);
       string title = Request.Form["title"];
       string name = Request.Form["name"];
@@ -284,6 +286,7 @@ namespace TravelForum.Controllers
     [HttpGet("/post/{postId}/region/{regionId}/country/{countryId}/city/{cityId}")]
     public ActionResult PostDetails(int postId, int regionId, int countryId, int cityId)
     {
+
       var model = new Dictionary<string, object> {};
       Post post = Post.Find(postId);
       List<Reply> replyList = Reply.GetRepliesByPostId(postId);

@@ -1,31 +1,32 @@
-<body id="post-form">
-  <h1>Here is your post summary:</h1>
-
-  <h4>Title:</h4>
-  <p>@Model["post"].GetTitle()</p>
-  <h4>Name:</h4>
-  <p>@Model["post"].GetName()</p>
-  <h4>Start Date:</h4>
-  <p>@Model["post"].GetStartDate().ToString("MM/dd/yyyy")</p>
-  <h4>End Date:</h4>
-  <p>@Model["post"].GetEndDate().ToString("MM/dd/yyyy")</p>
-  <h4>Text:</h4>
-  <p>@Model["post"].GetText()</p>
-  <h4>Region:</h4>
-  <p>@Model["region"].GetName()</p>
-  <h4>Country:</h4>
-  <p>@Model["country"].GetName()</p>
-  <h4>City:</h4>
-  <p>@Model["city"].GetName()</p>
-  <h4>Tag:</h4>
-  @foreach (var tag in @Model["tags"])
-  {
-    <p>@tag.GetName()</p>
-  }
-
-  <div>
-    <a href='/post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()/view-post'> <button class="btn btn-info">Submit Post</button></a>
-    <a href='/update/@Model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
-    <a href='/'><button class="btn btn-danger"> Go Home</button></a>
-  </div>
-</body>
+<div class="container">
+  <body id="post-form">
+    <div id="form-summary">
+      <legend>  <h1>Here is your post summary:</h1></legend>
+      <h4>Title:</h4>
+      <p>@Model["post"].GetTitle()</p>
+      <h4>Name:</h4>
+      <p>@Model["post"].GetName()</p>
+      <h4>Start Date:</h4>
+      <p>@Model["post"].GetStartDate().ToString("MM/dd/yyyy")</p>
+      <h4>End Date:</h4>
+      <p>@Model["post"].GetEndDate().ToString("MM/dd/yyyy")</p>
+      <h4>Text:</h4>
+      <p>@Model["post"].GetText()</p>
+      <h4>Region:</h4>
+      <p>@Model["region"].GetName()</p>
+      <h4>Country:</h4>
+      <p>@Model["country"].GetName()</p>
+      <h4>City:</h4>
+      <p>@Model["city"].GetName()</p>
+      <h4>Tag:</h4>
+      @foreach (var tag in @Model["tags"])
+      {
+        <p>@tag.GetName()</p>
+      }
+    </div>
+    <div>
+      <a href='/post/@Model["post"].GetId()/region/@Model["post"].GetRegionId()/country/@Model["post"].GetCountryId()/city/@Model["post"].GetCityId()/view-post'> <button class="btn btn-info">Go to your post</button></a>
+      <a href='/update/@Model["post"].GetId()'> <button class="btn btn-warning">Update</button></a>
+    </div>
+  </body>
+</div>

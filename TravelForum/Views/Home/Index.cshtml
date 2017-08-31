@@ -70,6 +70,7 @@
       <br>
       <h4>Select a Tag:</h4>
       @foreach (var tag in @Model["tags"])
+
       {
         <p><a href='/posts/by-tag/@tag.GetId()' class="tag-links">@tag.GetName() <span class="badge">@tag.GetPosts().Count</span> </a></p>
       }
@@ -79,6 +80,7 @@
       <h3>@Model["searchby"].GetName() Posts</h3>
       @foreach (var post in @Model["posts"])
       {
+
         <div class="well">
           <h4><a href="/post/@post.GetId()/region/@post.GetRegionId()/country/@post.GetCountryId()/city/@post.GetCityId()">@post.GetTitle()</a></h4>
           <p>@post.GetName() @post.GetStartDate().ToString("MM/dd/yyyy")</p>
