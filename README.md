@@ -12,7 +12,7 @@ _This web app enables a user to create a post about the places they visited an b
 |---|---|---|---|
 |1.| User may view a list of all posts from the index view.  |  |  |
 |2.| User may click `Add post` and should be redirected to the add form |Click `Add Post`| user redirected to the post form |
-|3.| User may view a posts's details by clicking the post title from the index view.  | Click `What to see in Bangkok`  | The post details for Bangcok will be displayed.  
+|3.| User may view a posts's details by clicking the post title from the index view.  | Click `What to see in Bangkok`  | The post details for Bangkok will be displayed.  
 |4.| User fills the form and click `Submit` the user should see the summary of the form and prompted to update or continue | Fill the form and Click `Add`| Summary of the form the user filled out and prompt buttons <br> `Update` or <br> `Create Post` |
 |5. |When user clicks `Update` button, they will be redirected to prepopulated form to make a change on any field and with `Save` or `Cancel` buttons.| Click `Update`| prepopulated form <br> `Save` button <br> `Cancel` |
 |6.| When user makes change to the field and clicks `Save` the data should be updated and the user should be redirected to the form summary view with the `Cancel` and `Update` button| Make a change and click `Save` |Redirected to form summary with the updated information.  |
