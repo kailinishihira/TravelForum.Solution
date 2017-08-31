@@ -29,6 +29,12 @@ namespace TravelForum.Controllers
       return View(model);
     }
 
+    [HttpGet("/about-us")]
+    public ActionResult AboutUs()
+    {
+      return View();
+    }
+
     [HttpPost("/posts/by-region")]
     public ActionResult RegionPosts()
     {
