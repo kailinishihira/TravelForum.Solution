@@ -1,0 +1,59 @@
+#about-us {
+  background-image: url("/img/melissa-313558.jpg");
+  background-position: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.header-about {
+  margin: 0;
+  margin-bottom: 3%;
+  padding: 15%;
+  text-align: center;
+  letter-spacing: 10px;
+  color: #123740;
+  font-size: 50px;
+}
+.about-well {
+  background: #fcfaea;
+  margin-bottom: 0;
+}
+.p-about {
+  font-size: 20px;
+  /*margin-bottom: 40px;*/
+  margin: 3% 10% 3% 10%;
+}
+.jiuzhai-img, .group-img {
+  width: 80%;
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+.group-img {
+  margin-bottom: 30px;
+}
+.about-img-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.team-header {
+  text-align: center;
+  letter-spacing: 5px;
+  margin-bottom: 30px;
+  font-size: 40px;
+}
+.about-hr {
+  border: solid .5px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.about-view-post-btn {
+  display: block;
+  margin: 10% 30% 15% 30%;
+  padding: 15px 25px 15px 25px;
+  background: #123740;
+  color: #ffffff;
+  font-size: 30px;
+  letter-spacing: 5px;
+  border: solid 4px #123740;
+}
