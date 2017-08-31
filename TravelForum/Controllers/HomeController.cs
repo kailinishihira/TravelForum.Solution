@@ -29,6 +29,12 @@ namespace TravelForum.Controllers
       return View(model);
     }
 
+    [HttpGet("/about-us")]
+    public ActionResult AboutUs()
+    {
+      return View();
+    }
+
     [HttpPost("/posts/by-region")]
     public ActionResult RegionPosts()
     {
@@ -92,10 +98,10 @@ namespace TravelForum.Controllers
       return View("Index", model);
     }
 
-    [HttpPost("/posts/by-tag")]
-    public ActionResult TagPosts()
+    [HttpGet("/posts/by-tag/{id}")]
+    public ActionResult TagPosts(int id)
     {
-      Tag thisTag = Tag.Find(Int32.Parse(Request.Form["tag-id"]));
+      Tag thisTag = Tag.Find(id);
       List<Post> tagPosts = thisTag.GetPosts();
       List<Region> allRegions = Region.GetAll();
       List<Country> allCountries = Country.GetAll();
@@ -140,6 +146,7 @@ namespace TravelForum.Controllers
       DateTime end = DateTime.Parse(Request.Form["end-date"]);
       string text = Request.Form["text"];
       int cityId = int.Parse(Request.Form["city"]);
+      Console.WriteLine("id================" + cityId);
       int countryId = int.Parse(Request.Form["country"]);
       int regionId = int.Parse(Request.Form["region"]);
       int tagId = int.Parse(Request.Form["tag"]);
