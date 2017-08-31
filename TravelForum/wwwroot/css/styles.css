@@ -40,7 +40,7 @@
     width: 100%;
 }
 #index {
-  background-color: #E5E5E5;
+  background-color: #fcfaea;
 }
 .index-view {
   margin-left: 5%;
@@ -48,14 +48,14 @@
   padding-bottom: 20%;
   font-size: 18px;
 }
-.overlay-desc h1{
+.overlay-desc h1 {
   background: rgba(0,0,0,0);
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #123740;
   font-size: 200px;
   letter-spacing: 10px;
 }
@@ -70,8 +70,15 @@
 .navbar-travel-forum {
   text-align: center;
   font-size: 30px;
-  margin-left: 1150px;
   letter-spacing: 10px;
+  color: #549aab;
+}
+
+.navbar-about {
+  text-align: center;
+  font-size: 20px;
+  margin-left: 50px;
+  letter-spacing: 4px;
   color: #549aab;
 }
 
@@ -85,10 +92,14 @@
 }
 
 .index-row-1 {
-  padding-top: 1%;
-  padding-bottom: 2%;
+  padding: 1% 5% 1% 5%;
+  background-color: #123740;
+  margin-bottom: 1%;
 }
 
+.h3-row-1 {
+  color: #ffffff;
+}
 .new-post-button {
   font-size: 20px;
   padding-left: 20px 30px 20px 30px;
@@ -101,6 +112,16 @@
   margin-bottom: 1%;
 }
 
+.post-title {
+  font-size: 30px;
+  color: #549aab;
+}
+
+.post-title:hover {
+  text-decoration: none;
+  color: #123740;
+}
+
 .tag-links {
   color: #123740;
 }
@@ -111,16 +132,11 @@
 }
 
 .index-labels {
-  color: #549aab;
+  color: #ffffff;
+  font-size: 20px;
   letter-spacing: 2px;
 }
-.index-about-btn {
-  display: block;
-  margin: 3% 40% 5% 40%;
-  padding: 20px 40px 20px 40px;
-  font-size: 30px;
-  letter-spacing: 5px;
-}
+
 .post-type {
   font-size: 50px;
   text-align: center;
@@ -144,7 +160,7 @@
 }
 .about-well {
   background: #fcfaea;
-  margin: 0;
+  margin-bottom: 0;
 }
 .p-about {
   font-size: 20px;
@@ -185,6 +201,10 @@
   letter-spacing: 5px;
   border: solid 4px #123740;
 }
+.about-view-post-btn:hover {
+  background-color: #549aab;
+  border: solid #549aab 4px;
+}
 
 .post-form-jumbo {
   text-align: center;
@@ -219,6 +239,14 @@ select {
 
 .button-post-form {
   text-align: center;
+}
+
+.index-tags-well {
+  background-color: #b0d7e1;
+}
+
+.index-hr {
+  border: solid 1px #123740;
 }
 
 footer p{
