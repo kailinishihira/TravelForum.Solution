@@ -249,6 +249,54 @@ select {
   border: solid 1px #123740;
 }
 
+.summary-row {
+  text-align: center;
+}
+
+.summary-row p{
+  font-size: 24px;
+}
+
+.summary-row h4{
+  font-size: 32px;
+}
+
+.post-summary-text p{
+  font-size: 16px;
+  margin-top:2%;
+}
+
+.summary-buttons {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.post-summary-head {
+  text-align: center;
+}
+
+.tag-well {
+  margin-top: 4%;
+  text-align: center;
+}
+
+.post-details-text h4{
+  font-size: 24px;
+  margin-top: 4%;
+}
+
+.post-details-text h3{
+  font-size: 36px;
+}
+
+.post-details-body-text p{
+  font-size: 16px;
+}
+
+.reply-button {
+  margin-top:3%;
+}
+
 footer p{
   text-align: center;
   font-size: 20px;
@@ -261,4 +309,8 @@ footer p{
   width: 100%;
   position: fixed;
   bottom: 0px;
+}
+
+body {
+  background-color: #fcfaea!important;
 }
