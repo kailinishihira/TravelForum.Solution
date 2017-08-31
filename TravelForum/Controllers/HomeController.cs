@@ -141,6 +141,8 @@ namespace TravelForum.Controllers
     {
       var model = new Dictionary<string,object>{};
       string title = Request.Form["title"];
+
+
       string name = Request.Form["name"];
       DateTime start = DateTime.Parse(Request.Form["start-date"]);
       DateTime end = DateTime.Parse(Request.Form["end-date"]);
