@@ -39,7 +39,6 @@
 .video-container video.fillWidth {
     width: 100%;
 }
-
 .index-view {
   margin-left: 5%;
   margin-right: 5%;
@@ -101,7 +100,6 @@
   color: #549aab;
   letter-spacing: 2px;
 }
-
 #about-us {
   background-image: url("/img/melissa-313558.jpg");
   background-position: cover;
@@ -127,7 +125,7 @@
   margin: 3% 10% 3% 10%;
 }
 .jiuzhai-img, .group-img {
-  width: 80%;
+  width: 50%;
   margin: auto;
   display: block;
   margin-bottom: 10px;
@@ -159,4 +157,3 @@
   font-size: 30px;
   letter-spacing: 5px;
   border: solid 4px #123740;
-
