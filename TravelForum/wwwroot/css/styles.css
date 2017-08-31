@@ -1,39 +1,3 @@
-
-.post-form-jumbo {
-  text-align: center;
-}
-
-.place-dropdown {
-  text-align: center;
-}
-
-select {
-  z-index: 1000;
-}
-
-.user-form-info {
-  text-align: center;
-}
-
-.bootstrap-select.btn-group .dropdown-toggle .filter-option {
-    display: inline-block;
-    overflow: hidden;
-    width: 100%;
-    text-align: center!important;
-}
-
-.post-form-area {
-  text-align: center;
-}
-
-.post-main {
-  margin-bottom: 10%;
-}
-
-.button-post-form {
-  text-align: center;
-}
-
 .homepage-hero-module {
     border-right: none;
     border-left: none;
@@ -75,7 +39,6 @@ select {
 .video-container video.fillWidth {
     width: 100%;
 }
-
 .index-view {
   margin-left: 5%;
   margin-right: 5%;
@@ -137,7 +100,6 @@ select {
   color: #549aab;
   letter-spacing: 2px;
 }
-
 #about-us {
   background-image: url("/img/melissa-313558.jpg");
   background-position: cover;
@@ -163,7 +125,7 @@ select {
   margin: 3% 10% 3% 10%;
 }
 .jiuzhai-img, .group-img {
-  width: 80%;
+  width: 50%;
   margin: auto;
   display: block;
   margin-bottom: 10px;
@@ -195,3 +157,39 @@ select {
   font-size: 30px;
   letter-spacing: 5px;
   border: solid 4px #123740;
+}
+
+.post-form-jumbo {
+  text-align: center;
+}
+
+.place-dropdown {
+  text-align: center;
+}
+
+select {
+  z-index: 1000;
+}
+
+.user-form-info {
+  text-align: center;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    text-align: center!important;
+}
+
+.post-form-area {
+  text-align: center;
+}
+
+.post-main {
+  margin-bottom: 10%;
+}
+
+.button-post-form {
+  text-align: center;
+}
