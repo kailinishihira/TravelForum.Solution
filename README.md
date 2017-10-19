@@ -1,12 +1,12 @@
 # _Travel Forum_
 
-#### _A web app to track bands and the venues where they've performed, 08.25.17_
+#### _A web app to post about the places you have traveled to, 08.31.17_
 
 #### By _**Lois Choi, Charlie Kelson, Robert Murray, Kaili Nishihira, Michael Woldemedihin**_
 
 ## Description
 
-_This web app enables a user to create a post about the places they visited an be able comment on others post_
+_This web app enables a user to create a post about the places they visited. Users will also be able comment on others post._
 
 || Behavior  | Input  | Output  |
 |---|---|---|---|
@@ -17,12 +17,13 @@ _This web app enables a user to create a post about the places they visited an b
 |5. |When user clicks `Update` button, they will be redirected to prepopulated form to make a change on any field and with `Save` or `Cancel` buttons.| Click `Update`| prepopulated form <br> `Save` button <br> `Cancel` |
 |6.| When user makes change to the field and clicks `Save` the data should be updated and the user should be redirected to the form summary view with the `Cancel` and `Update` button| Make a change and click `Save` |Redirected to form summary with the updated information.  |
 |7. |When user clicks `Cancel` button, they will be redirected to list of posts view.| Click `Cancel`|Redirected to index view |
-|8. |From the post's details view, the user should be able to `Update` or `Delete` a post| >Click `Update` <br> >Click `Delete`|> Redirected to the update view. <br> >Redirected to `Delete view` |
+|8. |From the post's details view, the user should be able to `Update` or `Delete` a post| Click `Update` <br> Click `Delete`| Redirected to the update view. <br> Redirected to `Delete view` |
 |9. |From the post's details view, the user can `Reply` to a post| Type a comment and Click `Reply` | The comment should be Submitted and should appear on the post.
 |10. |From the post's details view, the user can `Update` their comment.| Click `Update` in front of a comment.| Redirected to prepopulated `Update comment` view and `Save` and `Cancel` button.
-|11. |From the `Update comment` view, the user can `edit` their previous comment and save to the database.| >Click `Save` <br> >`Cancel`| >Save the changes and redirected to `post details` page <br> > Redirected to the `post details` page
-|12. |From the `post details` view use can delete their comment.| Click `Delete`infront of the comment.| Redirected to `Delete view`
+|11. |From the `Update comment` view, the user can `edit` their previous comment and save to the database.| Click `Save` <br> `Cancel`| Save the changes and redirected to `post details` page <br> Redirected to the `post details` page
+|12. | From the `post details` view use can delete their comment.| Click `Delete`infront of the comment.| Redirected to `Delete view`
 
+## SQL Design
 ![](travel-schema.png)
 
 
@@ -53,9 +54,6 @@ _This web app enables a user to create a post about the places they visited an b
 * _Click 'Import' tab_
 * _Choose database file (from cloned repository folder)_
 * _Click 'Go'_
-
-## SQL Design
-![](/sql-design.png)
 
 ## Technologies Used
 * _C#_
